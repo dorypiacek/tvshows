@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,10 @@
 		F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F724D9837E003E49A6 /* Metrics.swift */; };
 		F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */; };
 		F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67FC24D9A016003E49A6 /* Coordinator.swift */; };
+		F42E67FF24D9A104003E49A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F42E67FE24D9A104003E49A6 /* README.md */; };
+		F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680024D9A57F003E49A6 /* PersistentKey.swift */; };
+		F42E680424D9A5F1003E49A6 /* ETPersistentValue in Frameworks */ = {isa = PBXBuildFile; productRef = F42E680324D9A5F1003E49A6 /* ETPersistentValue */; };
+		F42E680624D9A827003E49A6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680524D9A827003E49A6 /* Configuration.swift */; };
 		F431037524D952440044F4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F431037424D952440044F4E4 /* Assets.xcassets */; };
 		F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431038D24D954400044F4E4 /* AppDelegate.swift */; };
 		F431039324D954790044F4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F431039124D954790044F4E4 /* LaunchScreen.storyboard */; };
@@ -35,6 +39,9 @@
 		F42E67F724D9837E003E49A6 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
 		F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		F42E67FC24D9A016003E49A6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F42E67FE24D9A104003E49A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F42E680024D9A57F003E49A6 /* PersistentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentKey.swift; sourceTree = "<group>"; };
+		F42E680524D9A827003E49A6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F431036824D952430044F4E4 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F431037424D952440044F4E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F431038D24D954400044F4E4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42E680424D9A5F1003E49A6 /* ETPersistentValue in Frameworks */,
 				8C47C6341590225B1EE64745 /* Pods_TV_Shows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +119,7 @@
 		F431035F24D952430044F4E4 = {
 			isa = PBXGroup;
 			children = (
+				F42E67FE24D9A104003E49A6 /* README.md */,
 				F431036A24D952430044F4E4 /* app */,
 				F431036924D952430044F4E4 /* Products */,
 				EA1A1316AA212BF338701408 /* Pods */,
@@ -144,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				F431038D24D954400044F4E4 /* AppDelegate.swift */,
+				F42E680524D9A827003E49A6 /* Configuration.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -154,6 +164,7 @@
 				F42E67FB24D9A004003E49A6 /* Coordinators */,
 				F42E67F024D98346003E49A6 /* UI Kits */,
 				F42E67E824D96841003E49A6 /* Data Providers */,
+				F42E680024D9A57F003E49A6 /* PersistentKey.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -210,6 +221,9 @@
 			dependencies = (
 			);
 			name = "TV Shows";
+			packageProductDependencies = (
+				F42E680324D9A5F1003E49A6 /* ETPersistentValue */,
+			);
 			productName = "TV Shows";
 			productReference = F431036824D952430044F4E4 /* TV Shows.app */;
 			productType = "com.apple.product-type.application";
@@ -239,6 +253,9 @@
 				Base,
 			);
 			mainGroup = F431035F24D952430044F4E4;
+			packageReferences = (
+				F42E680224D9A5F1003E49A6 /* XCRemoteSwiftPackageReference "ETPersistentValue" */,
+			);
 			productRefGroup = F431036924D952430044F4E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42E67FF24D9A104003E49A6 /* README.md in Resources */,
 				F431037524D952440044F4E4 /* Assets.xcassets in Resources */,
 				F431039324D954790044F4E4 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -331,10 +349,12 @@
 				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
 				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
 				F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */,
+				F42E680624D9A827003E49A6 /* Configuration.swift in Sources */,
 				F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */,
 				F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */,
 				F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */,
 				F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */,
+				F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +555,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F42E680224D9A5F1003E49A6 /* XCRemoteSwiftPackageReference "ETPersistentValue" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EtneteraMobile/ETPersistentValue";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F42E680324D9A5F1003E49A6 /* ETPersistentValue */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F42E680224D9A5F1003E49A6 /* XCRemoteSwiftPackageReference "ETPersistentValue" */;
+			productName = ETPersistentValue;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F431036024D952430044F4E4 /* Project object */;
 }

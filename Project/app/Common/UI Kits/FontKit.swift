@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Definition of fonts used in the application.
 struct FontKit {
 	var title1: UIFont { UIFont.preferredFont(forTextStyle: .title1) }
     var title2: UIFont { UIFont.preferredFont(forTextStyle: .title2) }

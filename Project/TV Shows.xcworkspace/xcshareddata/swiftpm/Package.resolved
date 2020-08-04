@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ETPersistentValue",
+        "repositoryURL": "https://github.com/EtneteraMobile/ETPersistentValue",
+        "state": {
+          "branch": null,
+          "revision": "bbcf2ff788b499b4c1ed51d09a682c7aadfaff11",
+          "version": "1.6.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

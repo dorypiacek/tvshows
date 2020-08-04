@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Definition of colors used in the application.
 struct ColorKit {
     public let defaultText = UIColor(hex: "505050")
 	public let darkGrayText = UIColor(hex: "2E2E2E")

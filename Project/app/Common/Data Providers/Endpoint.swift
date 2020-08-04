@@ -9,19 +9,22 @@
 import Foundation
 import Alamofire
 
+/// Information about each endpoint used in the app.
 enum Endpoint {
     case login
     case list
 	case detail(String)
+	case episodes(String)
+	
+	// MARK: - Variables
+	// MARK: - Public
 
-    var path: String {
-        switch self {
-        case .login: return "api/users/sessions"
-        case .list: return "api/shows"
-		case .detail(let id): return "api/shows/\(id)"
-        }
+	/// Combination of base URL and path used for API calls
+	var url: URLConvertible {
+		Configuration.baseUrl + path
     }
 
+	/// HTTP method that is used to call a specific endpoint
 	var method: HTTPMethod {
 		switch self {
 		case .login:
@@ -31,53 +34,30 @@ enum Endpoint {
 		}
 	}
 
+	/// HTTP headers to be used in URL request
 	var headers: HTTPHeaders {
-		var headers = [acceptHeader, contentTypeHeader]
-		if let authorization = authorizationHeader {
-			headers.append(authorization)
-		}
-		return HTTPHeaders(headers)
-	}
-
-    private var contentTypeHeader: HTTPHeader {
-		HTTPHeader(name: "Content-Type", value: "application/json")
-    }
-
-	private var acceptHeader: HTTPHeader {
-		HTTPHeader(name: "Accept", value: "application/json")
-    }
-
-	private var authorizationHeader: HTTPHeader? {
-		switch self.authorization {
-		case .none:
-			return nil
-		case .basic:
-			return HTTPHeader(name: "Authorization", value: "")
-		}
+		HTTPHeaders([acceptHeader, contentTypeHeader])
 	}
 }
 
-extension Endpoint {
-    enum Authorization {
-        case none, basic
-    }
-
-    var authorization: Authorization {
+private extension Endpoint {
+	
+	// MARK: - Private
+	
+    var path: String {
         switch self {
-		case .login:
-			return .none
-		default:
-			return .basic
+        case .login: return "api/users/sessions"
+        case .list: return "api/shows"
+		case .detail(let id): return "api/shows/\(id)"
+		case .episodes(let id): return "api/shows/\(id)/episodes"
         }
     }
-}
 
-extension Endpoint {
-    var base: String {
-		"https://api.infinum.academy/"
-	}
+    var contentTypeHeader: HTTPHeader {
+		.contentType("application/json")
+    }
 
-    var url: URLConvertible {
-        base + path
+	var acceptHeader: HTTPHeader {
+		.accept("application/json")
     }
 }

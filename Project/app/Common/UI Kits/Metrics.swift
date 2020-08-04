@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Definition of paddings, radii and other constants used in app layout.
 struct Metrics {
 	let padding = Padding()
 	let cornerRadius: CGFloat = 6

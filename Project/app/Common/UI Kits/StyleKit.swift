@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Structure holding all necessary information about app design.
+/// - All the UI Constants used through the app should be stored here to avoid ambiguity in code.
 struct StyleKit {
     static let color = ColorKit()
     static let font = FontKit()
