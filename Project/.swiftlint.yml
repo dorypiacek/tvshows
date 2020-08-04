@@ -5,6 +5,8 @@ disabled_rules:
   - shorthand_operator
   - identifier_name
   - conditional_returns_on_newline
+  - switch_case_alignment
+  - closure_end_indentation
 opt_in_rules:
   - legacy_hashing
   - empty_count

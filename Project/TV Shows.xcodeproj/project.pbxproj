@@ -8,9 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		8C47C6341590225B1EE64745 /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E175CC43FB5284D44362BF3C /* Pods_TV_Shows.framework */; };
+		F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67E924D96C60003E49A6 /* Endpoint.swift */; };
+		F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67EB24D975CA003E49A6 /* ApiDataProvider.swift */; };
+		F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */; };
+		F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F124D98353003E49A6 /* ColorKit.swift */; };
+		F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F324D9835D003E49A6 /* FontKit.swift */; };
+		F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F524D98374003E49A6 /* StyleKit.swift */; };
+		F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F724D9837E003E49A6 /* Metrics.swift */; };
+		F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */; };
+		F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E67FC24D9A016003E49A6 /* Coordinator.swift */; };
 		F431037524D952440044F4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F431037424D952440044F4E4 /* Assets.xcassets */; };
 		F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431038D24D954400044F4E4 /* AppDelegate.swift */; };
-		F431039024D954400044F4E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431038E24D954400044F4E4 /* SceneDelegate.swift */; };
 		F431039324D954790044F4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F431039124D954790044F4E4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -18,10 +26,18 @@
 		2D838C27AC5AD1CCBA0455B2 /* Pods-TV Shows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.debug.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.debug.xcconfig"; sourceTree = "<group>"; };
 		E175CC43FB5284D44362BF3C /* Pods_TV_Shows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TV_Shows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E974DBC25178E3DAF6FEBE89 /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
+		F42E67E924D96C60003E49A6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		F42E67EB24D975CA003E49A6 /* ApiDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDataProvider.swift; sourceTree = "<group>"; };
+		F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
+		F42E67F124D98353003E49A6 /* ColorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKit.swift; sourceTree = "<group>"; };
+		F42E67F324D9835D003E49A6 /* FontKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontKit.swift; sourceTree = "<group>"; };
+		F42E67F524D98374003E49A6 /* StyleKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
+		F42E67F724D9837E003E49A6 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		F42E67FC24D9A016003E49A6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F431036824D952430044F4E4 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F431037424D952440044F4E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F431038D24D954400044F4E4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F431038E24D954400044F4E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F431039224D954790044F4E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = app/Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		F431039624D955300044F4E4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +71,43 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F42E67E824D96841003E49A6 /* Data Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F42E67E924D96C60003E49A6 /* Endpoint.swift */,
+				F42E67EB24D975CA003E49A6 /* ApiDataProvider.swift */,
+			);
+			path = "Data Providers";
+			sourceTree = "<group>";
+		};
+		F42E67ED24D982B6003E49A6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */,
+				F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F42E67F024D98346003E49A6 /* UI Kits */ = {
+			isa = PBXGroup;
+			children = (
+				F42E67F524D98374003E49A6 /* StyleKit.swift */,
+				F42E67F124D98353003E49A6 /* ColorKit.swift */,
+				F42E67F324D9835D003E49A6 /* FontKit.swift */,
+				F42E67F724D9837E003E49A6 /* Metrics.swift */,
+			);
+			path = "UI Kits";
+			sourceTree = "<group>";
+		};
+		F42E67FB24D9A004003E49A6 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				F42E67FC24D9A016003E49A6 /* Coordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		F431035F24D952430044F4E4 = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +133,9 @@
 				F431038124D953780044F4E4 /* Application */,
 				F431038624D953A90044F4E4 /* Modules */,
 				F431038224D953840044F4E4 /* Common */,
-				F431038524D953970044F4E4 /* Supporting Files */,
+				F42E67ED24D982B6003E49A6 /* Utilities */,
 				F431038424D953900044F4E4 /* Resources */,
+				F431038524D953970044F4E4 /* Supporting Files */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -90,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				F431038D24D954400044F4E4 /* AppDelegate.swift */,
-				F431038E24D954400044F4E4 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -98,6 +151,9 @@
 		F431038224D953840044F4E4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F42E67FB24D9A004003E49A6 /* Coordinators */,
+				F42E67F024D98346003E49A6 /* UI Kits */,
+				F42E67E824D96841003E49A6 /* Data Providers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -270,7 +326,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */,
-				F431039024D954400044F4E4 /* SceneDelegate.swift in Sources */,
+				F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */,
+				F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */,
+				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
+				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
+				F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */,
+				F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */,
+				F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */,
+				F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */,
+				F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +476,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F5P7JRKJ8L;
 				INFOPLIST_FILE = "$(SRCROOT)/app/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,6 +500,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F5P7JRKJ8L;
 				INFOPLIST_FILE = "$(SRCROOT)/app/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
