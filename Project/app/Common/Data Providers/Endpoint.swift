@@ -15,7 +15,7 @@ enum Endpoint {
     case list
 	case detail(String)
 	case episodes(String)
-	
+
 	// MARK: - Variables
 	// MARK: - Public
 
@@ -41,9 +41,9 @@ enum Endpoint {
 }
 
 private extension Endpoint {
-	
+
 	// MARK: - Private
-	
+
     var path: String {
         switch self {
         case .login: return "api/users/sessions"

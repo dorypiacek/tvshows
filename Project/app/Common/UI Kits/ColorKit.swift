@@ -15,6 +15,7 @@ struct ColorKit {
 	public let darkGrayText = UIColor(hex: "2E2E2E")
 	public let lightGrayText = UIColor(hex: "A0A0A0")
 	public let brand = UIColor(hex: "FF758C")
+	public let separator = UIColor(hex: "EAEAEA")
     public let buttonDisabled = UIColor(hex: "FFCCD5")
-    public let separator = UIColor(hex: "EAEAEA")
+	public let buttonTitle = UIColor.white
 }

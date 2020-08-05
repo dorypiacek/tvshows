@@ -11,6 +11,7 @@ import Foundation
 /// A key used for saving and retrieving persistent values from Keychain or UserDefaults
 enum PersistentKey: String, CustomStringConvertible {
     case accessToken
+	case userCredentials
 
     var description: String {
 		self.rawValue

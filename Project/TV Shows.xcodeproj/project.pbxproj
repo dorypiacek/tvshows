@@ -21,9 +21,27 @@
 		F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680024D9A57F003E49A6 /* PersistentKey.swift */; };
 		F42E680424D9A5F1003E49A6 /* ETPersistentValue in Frameworks */ = {isa = PBXBuildFile; productRef = F42E680324D9A5F1003E49A6 /* ETPersistentValue */; };
 		F42E680624D9A827003E49A6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680524D9A827003E49A6 /* Configuration.swift */; };
+		F42E680924D9B5D7003E49A6 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680824D9B5D7003E49A6 /* LoginCoordinator.swift */; };
+		F42E680B24D9B5EA003E49A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680A24D9B5EA003E49A6 /* LoginViewController.swift */; };
+		F42E680D24D9B5F7003E49A6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680C24D9B5F7003E49A6 /* LoginViewModel.swift */; };
+		F42E680F24D9B614003E49A6 /* LoginDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E680E24D9B614003E49A6 /* LoginDataProvider.swift */; };
+		F42E681424D9B654003E49A6 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E681324D9B654003E49A6 /* Login.swift */; };
+		F42E681724D9B7AA003E49A6 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E681624D9B7AA003E49A6 /* UserCredentials.swift */; };
+		F42E681924D9B7FF003E49A6 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E681824D9B7FF003E49A6 /* LoginResponse.swift */; };
+		F42E681B24D9B8BB003E49A6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E681A24D9B8BB003E49A6 /* Data.swift */; };
 		F431037524D952440044F4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F431037424D952440044F4E4 /* Assets.xcassets */; };
 		F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431038D24D954400044F4E4 /* AppDelegate.swift */; };
 		F431039324D954790044F4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F431039124D954790044F4E4 /* LaunchScreen.storyboard */; };
+		F455280F24D9C7EC00F93183 /* AlertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455280E24D9C7EC00F93183 /* AlertConfig.swift */; };
+		F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281024D9CCF600F93183 /* LocalizationKit.swift */; };
+		F455281424D9D8C300F93183 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281324D9D8C300F93183 /* RadioButton.swift */; };
+		F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281524D9DAD400F93183 /* UIControl+Closure.swift */; };
+		F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281724D9DC0D00F93183 /* DeallocTracker.swift */; };
+		F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281924D9DEB700F93183 /* PrimaryButton.swift */; };
+		F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */; };
+		F455281E24D9FE7C00F93183 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281D24D9FE7C00F93183 /* InputValidator.swift */; };
+		F455282024D9FED200F93183 /* LoginViewModel+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */; };
+		F455282224D9FEE600F93183 /* LoginViewModel+Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,11 +60,29 @@
 		F42E67FE24D9A104003E49A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F42E680024D9A57F003E49A6 /* PersistentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentKey.swift; sourceTree = "<group>"; };
 		F42E680524D9A827003E49A6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F42E680824D9B5D7003E49A6 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		F42E680A24D9B5EA003E49A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F42E680C24D9B5F7003E49A6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F42E680E24D9B614003E49A6 /* LoginDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataProvider.swift; sourceTree = "<group>"; };
+		F42E681324D9B654003E49A6 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		F42E681624D9B7AA003E49A6 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
+		F42E681824D9B7FF003E49A6 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		F42E681A24D9B8BB003E49A6 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		F431036824D952430044F4E4 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F431037424D952440044F4E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F431038D24D954400044F4E4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F431039224D954790044F4E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = app/Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		F431039624D955300044F4E4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F455280E24D9C7EC00F93183 /* AlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfig.swift; sourceTree = "<group>"; };
+		F455281024D9CCF600F93183 /* LocalizationKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKit.swift; sourceTree = "<group>"; };
+		F455281324D9D8C300F93183 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		F455281524D9DAD400F93183 /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
+		F455281724D9DC0D00F93183 /* DeallocTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeallocTracker.swift; sourceTree = "<group>"; };
+		F455281924D9DEB700F93183 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		F455281D24D9FE7C00F93183 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
+		F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewModel+Presentation.swift"; sourceTree = "<group>"; };
+		F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewModel+Interactions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +129,9 @@
 			children = (
 				F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */,
 				F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */,
+				F455281524D9DAD400F93183 /* UIControl+Closure.swift */,
+				F455281724D9DC0D00F93183 /* DeallocTracker.swift */,
+				F455281D24D9FE7C00F93183 /* InputValidator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -104,6 +143,7 @@
 				F42E67F124D98353003E49A6 /* ColorKit.swift */,
 				F42E67F324D9835D003E49A6 /* FontKit.swift */,
 				F42E67F724D9837E003E49A6 /* Metrics.swift */,
+				F455281024D9CCF600F93183 /* LocalizationKit.swift */,
 			);
 			path = "UI Kits";
 			sourceTree = "<group>";
@@ -114,6 +154,55 @@
 				F42E67FC24D9A016003E49A6 /* Coordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		F42E680724D9B5BA003E49A6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F42E681324D9B654003E49A6 /* Login.swift */,
+				F42E680824D9B5D7003E49A6 /* LoginCoordinator.swift */,
+				F42E681024D9B618003E49A6 /* View */,
+				F42E681124D9B61F003E49A6 /* VM */,
+				F42E681224D9B625003E49A6 /* DataProvider */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F42E681024D9B618003E49A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F42E680A24D9B5EA003E49A6 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F42E681124D9B61F003E49A6 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				F42E680C24D9B5F7003E49A6 /* LoginViewModel.swift */,
+				F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */,
+				F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		F42E681224D9B625003E49A6 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				F42E680E24D9B614003E49A6 /* LoginDataProvider.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
+		F42E681524D9B79A003E49A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F42E681624D9B7AA003E49A6 /* UserCredentials.swift */,
+				F42E681824D9B7FF003E49A6 /* LoginResponse.swift */,
+				F42E681A24D9B8BB003E49A6 /* Data.swift */,
+				F455280E24D9C7EC00F93183 /* AlertConfig.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F431035F24D952430044F4E4 = {
@@ -161,6 +250,8 @@
 		F431038224D953840044F4E4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F455281224D9D89F00F93183 /* UI Components */,
+				F42E681524D9B79A003E49A6 /* Model */,
 				F42E67FB24D9A004003E49A6 /* Coordinators */,
 				F42E67F024D98346003E49A6 /* UI Kits */,
 				F42E67E824D96841003E49A6 /* Data Providers */,
@@ -189,6 +280,7 @@
 		F431038624D953A90044F4E4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F42E680724D9B5BA003E49A6 /* Login */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -201,6 +293,16 @@
 			name = Base.lproj;
 			path = app/Base.lproj;
 			sourceTree = SOURCE_ROOT;
+		};
+		F455281224D9D89F00F93183 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				F455281324D9D8C300F93183 /* RadioButton.swift */,
+				F455281924D9DEB700F93183 /* PrimaryButton.swift */,
+				F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -343,16 +445,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42E680F24D9B614003E49A6 /* LoginDataProvider.swift in Sources */,
+				F42E681424D9B654003E49A6 /* Login.swift in Sources */,
+				F42E680B24D9B5EA003E49A6 /* LoginViewController.swift in Sources */,
 				F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */,
+				F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */,
 				F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */,
+				F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */,
+				F42E681724D9B7AA003E49A6 /* UserCredentials.swift in Sources */,
+				F42E681924D9B7FF003E49A6 /* LoginResponse.swift in Sources */,
+				F455282024D9FED200F93183 /* LoginViewModel+Presentation.swift in Sources */,
 				F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */,
 				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
+				F42E680924D9B5D7003E49A6 /* LoginCoordinator.swift in Sources */,
 				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
+				F42E681B24D9B8BB003E49A6 /* Data.swift in Sources */,
+				F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */,
+				F455280F24D9C7EC00F93183 /* AlertConfig.swift in Sources */,
 				F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */,
+				F42E680D24D9B5F7003E49A6 /* LoginViewModel.swift in Sources */,
+				F455282224D9FEE600F93183 /* LoginViewModel+Interactions.swift in Sources */,
 				F42E680624D9A827003E49A6 /* Configuration.swift in Sources */,
+				F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */,
+				F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */,
+				F455281424D9D8C300F93183 /* RadioButton.swift in Sources */,
 				F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */,
 				F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */,
 				F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */,
+				F455281E24D9FE7C00F93183 /* InputValidator.swift in Sources */,
 				F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */,
 				F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */,
 			);

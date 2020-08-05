@@ -13,9 +13,9 @@ import ETPersistentValue
 
 /// Base DataProvider to be extended with a protocol for every screen/module
 final class ApiDataProvider {
-	
+
 	// MARK: - Public
-	
+
 	/**
 	Generic function which does an API call to specified endpoint.
 
