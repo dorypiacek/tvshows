@@ -12,5 +12,7 @@ import UIKit
 /// Protocol used for coordinator pattern implementation
 protocol Coordinator {
 	var presenter: UINavigationController { get set }
+	var onDidStop: (() -> Void)? { get set }
 	func start()
+	func stop()
 }

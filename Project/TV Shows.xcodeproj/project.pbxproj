@@ -42,6 +42,14 @@
 		F455281E24D9FE7C00F93183 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281D24D9FE7C00F93183 /* InputValidator.swift */; };
 		F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */; };
 		F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */; };
+		F47651CF24DC1CF700E2B73A /* ShowsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651CE24DC1CF700E2B73A /* ShowsList.swift */; };
+		F47651D124DC1D1200E2B73A /* ShowsListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D024DC1D1200E2B73A /* ShowsListCoordinator.swift */; };
+		F47651D624DC1DC900E2B73A /* ShowsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D524DC1DC900E2B73A /* ShowsListViewController.swift */; };
+		F47651D824DC1E8800E2B73A /* ShowsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D724DC1E8800E2B73A /* ShowsListViewModel.swift */; };
+		F47651DA24DC1F4A00E2B73A /* ShowsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D924DC1F4A00E2B73A /* ShowsListCell.swift */; };
+		F47651DC24DC20BA00E2B73A /* ShowsListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651DB24DC20BA00E2B73A /* ShowsListDataProvider.swift */; };
+		F47651DE24DC211A00E2B73A /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651DD24DC211A00E2B73A /* TVShow.swift */; };
+		F47651E024DC259900E2B73A /* ShowsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651DF24DC259900E2B73A /* ShowsListHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +91,14 @@
 		F455281D24D9FE7C00F93183 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
 		F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
 		F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		F47651CE24DC1CF700E2B73A /* ShowsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsList.swift; sourceTree = "<group>"; };
+		F47651D024DC1D1200E2B73A /* ShowsListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListCoordinator.swift; sourceTree = "<group>"; };
+		F47651D524DC1DC900E2B73A /* ShowsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListViewController.swift; sourceTree = "<group>"; };
+		F47651D724DC1E8800E2B73A /* ShowsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListViewModel.swift; sourceTree = "<group>"; };
+		F47651D924DC1F4A00E2B73A /* ShowsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListCell.swift; sourceTree = "<group>"; };
+		F47651DB24DC20BA00E2B73A /* ShowsListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListDataProvider.swift; sourceTree = "<group>"; };
+		F47651DD24DC211A00E2B73A /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
+		F47651DF24DC259900E2B73A /* ShowsListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +217,7 @@
 				F42E681824D9B7FF003E49A6 /* LoginResponse.swift */,
 				F42E681A24D9B8BB003E49A6 /* Data.swift */,
 				F455280E24D9C7EC00F93183 /* AlertConfig.swift */,
+				F47651DD24DC211A00E2B73A /* TVShow.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +297,7 @@
 		F431038624D953A90044F4E4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F47651CD24DC1CC700E2B73A /* ShowsList */,
 				F42E680724D9B5BA003E49A6 /* Login */,
 			);
 			path = Modules;
@@ -302,6 +320,44 @@
 				F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */,
 			);
 			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		F47651CD24DC1CC700E2B73A /* ShowsList */ = {
+			isa = PBXGroup;
+			children = (
+				F47651CE24DC1CF700E2B73A /* ShowsList.swift */,
+				F47651D024DC1D1200E2B73A /* ShowsListCoordinator.swift */,
+				F47651D224DC1D5A00E2B73A /* View */,
+				F47651D324DC1D6000E2B73A /* VM */,
+				F47651D424DC1D6500E2B73A /* DataProvider */,
+			);
+			path = ShowsList;
+			sourceTree = "<group>";
+		};
+		F47651D224DC1D5A00E2B73A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F47651D524DC1DC900E2B73A /* ShowsListViewController.swift */,
+				F47651D924DC1F4A00E2B73A /* ShowsListCell.swift */,
+				F47651DF24DC259900E2B73A /* ShowsListHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F47651D324DC1D6000E2B73A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				F47651D724DC1E8800E2B73A /* ShowsListViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		F47651D424DC1D6500E2B73A /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				F47651DB24DC20BA00E2B73A /* ShowsListDataProvider.swift */,
+			);
+			path = DataProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,10 +502,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42E680F24D9B614003E49A6 /* LoginDataProvider.swift in Sources */,
+				F47651D824DC1E8800E2B73A /* ShowsListViewModel.swift in Sources */,
 				F42E681424D9B654003E49A6 /* Login.swift in Sources */,
 				F42E680B24D9B5EA003E49A6 /* LoginViewController.swift in Sources */,
 				F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */,
 				F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */,
+				F47651D124DC1D1200E2B73A /* ShowsListCoordinator.swift in Sources */,
 				F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */,
 				F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */,
 				F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */,
@@ -457,10 +515,13 @@
 				F42E681924D9B7FF003E49A6 /* LoginResponse.swift in Sources */,
 				F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */,
 				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
+				F47651D624DC1DC900E2B73A /* ShowsListViewController.swift in Sources */,
 				F42E680924D9B5D7003E49A6 /* LoginCoordinator.swift in Sources */,
 				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
+				F47651E024DC259900E2B73A /* ShowsListHeaderView.swift in Sources */,
 				F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */,
 				F42E681B24D9B8BB003E49A6 /* Data.swift in Sources */,
+				F47651DE24DC211A00E2B73A /* TVShow.swift in Sources */,
 				F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */,
 				F455280F24D9C7EC00F93183 /* AlertConfig.swift in Sources */,
 				F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */,
@@ -469,9 +530,12 @@
 				F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */,
 				F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */,
 				F455281424D9D8C300F93183 /* RadioButton.swift in Sources */,
+				F47651DC24DC20BA00E2B73A /* ShowsListDataProvider.swift in Sources */,
 				F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */,
 				F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */,
 				F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */,
+				F47651CF24DC1CF700E2B73A /* ShowsList.swift in Sources */,
+				F47651DA24DC1F4A00E2B73A /* ShowsListCell.swift in Sources */,
 				F455281E24D9FE7C00F93183 /* InputValidator.swift in Sources */,
 				F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */,
 				F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */,

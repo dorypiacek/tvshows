@@ -11,13 +11,20 @@ import UIKit
 
 class BaseCoordinator: Coordinator {
 	var presenter: UINavigationController
+	var onDidStop: (() -> Void)?
 
 	init(presenter: UINavigationController) {
 		self.presenter = presenter
 	}
 
 	func start() {
+		// Used for overrides
+	}
 
+	func stop() {
+		presenter.presentedViewController?.dismiss(animated: true, completion: { [weak self] in
+			self?.onDidStop?()
+		})
 	}
 
 	func showAlert(with config: AlertConfig) {

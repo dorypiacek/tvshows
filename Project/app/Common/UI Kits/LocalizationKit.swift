@@ -11,6 +11,7 @@ import Foundation
 struct LocalizationKit {
 	static let login = Login()
 	static let general = General()
+	static let showsList = ShowsList()
 }
 
 extension LocalizationKit {
@@ -25,5 +26,9 @@ extension LocalizationKit {
 		let passwordPlaceholder = "Password"
 		let radioButtonTitle = "Remember me"
 		let loginButtonTitle = "LOG IN"
+	}
+
+	struct ShowsList {
+		let title = "Shows"
 	}
 }

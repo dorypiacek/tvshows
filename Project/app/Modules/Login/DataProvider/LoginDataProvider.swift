@@ -15,6 +15,6 @@ protocol LoginDataProviderType {
 
 extension ApiDataProvider: LoginDataProviderType {
 	func login(with credentials: UserCredentials) -> Promise<Data<LoginResponse>> {
-		load(from: .login, body: credentials)
+		post(to: .login, body: credentials)
 	}
 }

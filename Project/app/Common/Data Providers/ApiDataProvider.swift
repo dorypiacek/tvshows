@@ -24,16 +24,38 @@ final class ApiDataProvider {
 	
 	- Returns: A Promise which is either fulfilled with an object of specified type `<ResultType>` or rejected with an error.
 	*/
-	func load<ResultType: Decodable, BodyType: Encodable>(from endpoint: Endpoint, body: BodyType? = nil) -> Promise<ResultType> {
+	func get<ResultType: Decodable>(from endpoint: Endpoint) -> Promise<ResultType> {
 		Promise { resolver in
 			let method = endpoint.method
 			let url = endpoint.url
 			let headers = endpoint.headers
-			let params = body?.dictionary
 
-			AF.request(url, method: method, parameters: method == .get ? nil : params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+			AF.request(url, method: method, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 				switch response.result {
 				case .success(let data):
+					let decoder = DictionaryDecoder()
+					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
+						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+					}
+					resolver.fulfill(decodedData)
+				case .failure(let error):
+					resolver.reject(error)
+				}
+			}
+		}
+    }
+
+	func post<ResultType: Decodable, BodyType: Encodable>(to endpoint: Endpoint, body: BodyType) -> Promise<ResultType> {
+		Promise { resolver in
+			let method = endpoint.method
+			let url = endpoint.url
+			let headers = endpoint.headers
+			let params = body.dictionary
+
+			AF.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+				switch response.result {
+				case .success(let data):
+					print(data)
 					let decoder = DictionaryDecoder()
 					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
 						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))
