@@ -17,12 +17,12 @@ final class ApiDataProvider {
 	// MARK: - Public
 
 	/**
-	Generic function which does an API call to specified endpoint.
+	Generic function which makes an API call to specified endpoint.
 
 	- Parameter endpoint: The endpoint the call is being sent to.
 	- Parameter body: Optional body of the request. Should be left `nil` for HTTP method `get`.
 	
-	- Returns: A Promise which is either fulfilled with an object of specified type `<ResultType>` or rejected with error.
+	- Returns: A Promise which is either fulfilled with an object of specified type `<ResultType>` or rejected with an error.
 	*/
 	func load<ResultType: Decodable, BodyType: Encodable>(from endpoint: Endpoint, body: BodyType? = nil) -> Promise<ResultType> {
 		Promise { resolver in
@@ -50,6 +50,7 @@ final class ApiDataProvider {
 // MARK: - RequestAdapter
 
 extension ApiDataProvider: RequestAdapter {
+	/// Adds authorization header to a request if saved access token exists
 	func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Swift.Result<URLRequest, Error>) -> Void) {
 		if let token = PersistentString(account: PersistentKey.accessToken).value {
 			var urlRequest = urlRequest

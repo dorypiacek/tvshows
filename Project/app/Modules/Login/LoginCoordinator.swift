@@ -14,7 +14,7 @@ extension Login {
 		override func start() {
 			let dataProvider = ApiDataProvider() as LoginDataProviderType
 			let vm = VM(dataProvider: dataProvider)
-			vm.onDidLogin = { [weak self] in
+			vm.onDidLogin = {
 				// TODO: Show TV Shows list
 			}
 			vm.onShowAlert = { [weak self] config in

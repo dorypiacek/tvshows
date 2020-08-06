@@ -11,17 +11,12 @@ import UIKit
 
 extension UIColor {
 	/// Initialize UIColor from hex string
-	/// works with #?A?RGB
-	/// regex: ^#?([A-Fa-f0-9]{2})?([A-Fa-f0-9]{6})$
 	///
 	/// examples:
-	/// with or withouth hash character: UIColor(hex: "#00FFFFFF"), UIColor(hex: "00FFFFFF")
-	/// with alpha (ARGB): UIColor(hex: "#00FFFFFF")
-	/// without alpha (alpha is 1): UIColor(hex: "#FFFFFF")
-	///
-	/// ARGB https://en.wikipedia.org/wiki/RGBA_color_space#ARGB_.28word-order.29
-	///
-	/// - Parameter hex: "#?A?RGB" hex string
+	/// - With or without hash character: UIColor(hex: "#00FFFFFF"), UIColor(hex: "00FFFFFF")
+	/// - With alpha (ARGB): UIColor(hex: "#00FFFFFF")
+	/// - Without alpha (alpha is 1): UIColor(hex: "#FFFFFF")
+	/// - Parameter hex: hex string
 	convenience init(hex: String) {
 		let hexString: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 		let scanner = Scanner(string: hexString)
@@ -52,7 +47,6 @@ extension UIColor {
 	///
 	/// - Parameter hex6: UInt32
 	convenience init(hex6: UInt32) {
-
 		let mask = 0x000000FF
 		let r = Int(hex6 >> 16) & mask
 		let g = Int(hex6 >> 8) & mask
@@ -67,12 +61,12 @@ extension UIColor {
 
 	/// Initialize UIColor from hex (without alpha) in int
 	/// example: UIColor(hex8: 0x77FFFFFF)
+	/// - For ARGB reference see [ARGB]
 	///
-	/// ARGB https://en.wikipedia.org/wiki/RGBA_color_space#ARGB_.28word-order.29
+	/// [ARGB]: https://en.wikipedia.org/wiki/RGBA_color_space#ARGB_.28word-order.29/
 	///
 	/// - Parameter hex8: UInt32
 	convenience init(hex8: UInt32) {
-
 		let mask = 0x000000FF
 		let r = Int(hex8 >> 16) & mask
 		let g = Int(hex8 >> 8) & mask
