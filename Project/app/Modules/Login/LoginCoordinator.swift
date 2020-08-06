@@ -10,37 +10,19 @@ import Foundation
 import UIKit
 
 extension Login {
-	final class Coord: Coordinator {
-
-		// MARK: - Variables
-		// MARK: - Public
-
-		var presenter: UINavigationController
-
-		// MARK: - Initializer
-
-		init(presenter: UINavigationController) {
-			self.presenter = presenter
-		}
-
-		func start() {
+	final class Coord: BaseCoordinator {
+		override func start() {
 			let dataProvider = ApiDataProvider() as LoginDataProviderType
 			let vm = VM(dataProvider: dataProvider)
 			vm.onDidLogin = { [weak self] in
-				self?.showList()
+				// TODO: Show TV Shows list
 			}
 			vm.onShowAlert = { [weak self] config in
 				self?.showAlert(with: config)
 			}
 			let vc = VC(vm: vm)
 			vc.modalPresentationStyle = .overFullScreen
-			presenter.present(vc, animated: true, completion: nil)
+			presenter.present(vc, animated: false, completion: nil)
 		}
-	}
-}
-
-private extension Login.Coord {
-	func showList() {
-		// TODO: Implement.
 	}
 }

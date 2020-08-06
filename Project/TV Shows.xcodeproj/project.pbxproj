@@ -40,8 +40,8 @@
 		F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281924D9DEB700F93183 /* PrimaryButton.swift */; };
 		F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */; };
 		F455281E24D9FE7C00F93183 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281D24D9FE7C00F93183 /* InputValidator.swift */; };
-		F455282024D9FED200F93183 /* LoginViewModel+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */; };
-		F455282224D9FEE600F93183 /* LoginViewModel+Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */; };
+		F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */; };
+		F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,8 +81,8 @@
 		F455281924D9DEB700F93183 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		F455281D24D9FE7C00F93183 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
-		F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewModel+Presentation.swift"; sourceTree = "<group>"; };
-		F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewModel+Interactions.swift"; sourceTree = "<group>"; };
+		F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
+		F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */,
+				F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */,
 				F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */,
 				F455281524D9DAD400F93183 /* UIControl+Closure.swift */,
 				F455281724D9DC0D00F93183 /* DeallocTracker.swift */,
@@ -152,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				F42E67FC24D9A016003E49A6 /* Coordinator.swift */,
+				F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -180,8 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				F42E680C24D9B5F7003E49A6 /* LoginViewModel.swift */,
-				F455281F24D9FED200F93183 /* LoginViewModel+Presentation.swift */,
-				F455282124D9FEE600F93183 /* LoginViewModel+Interactions.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -451,20 +451,20 @@
 				F431038F24D954400044F4E4 /* AppDelegate.swift in Sources */,
 				F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */,
 				F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */,
+				F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */,
 				F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */,
 				F42E681724D9B7AA003E49A6 /* UserCredentials.swift in Sources */,
 				F42E681924D9B7FF003E49A6 /* LoginResponse.swift in Sources */,
-				F455282024D9FED200F93183 /* LoginViewModel+Presentation.swift in Sources */,
 				F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */,
 				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
 				F42E680924D9B5D7003E49A6 /* LoginCoordinator.swift in Sources */,
 				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
+				F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */,
 				F42E681B24D9B8BB003E49A6 /* Data.swift in Sources */,
 				F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */,
 				F455280F24D9C7EC00F93183 /* AlertConfig.swift in Sources */,
 				F42E67F824D9837E003E49A6 /* Metrics.swift in Sources */,
 				F42E680D24D9B5F7003E49A6 /* LoginViewModel.swift in Sources */,
-				F455282224D9FEE600F93183 /* LoginViewModel+Interactions.swift in Sources */,
 				F42E680624D9A827003E49A6 /* Configuration.swift in Sources */,
 				F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */,
 				F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */,

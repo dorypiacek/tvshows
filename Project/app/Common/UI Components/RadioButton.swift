@@ -46,5 +46,8 @@ private extension RadioButton {
 		setTitleColor(StyleKit.color.defaultText, for: .normal)
 		titleLabel?.font = StyleKit.font.callout
 		titleLabel?.textAlignment = .left
+		imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: StyleKit.metrics.padding.small)
+		titleEdgeInsets = UIEdgeInsets(top: 0, left: StyleKit.metrics.padding.small, bottom: 0, right: 0)
+		contentHorizontalAlignment = .leading
 	}
 }

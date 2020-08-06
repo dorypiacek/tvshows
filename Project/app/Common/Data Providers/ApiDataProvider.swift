@@ -34,10 +34,11 @@ final class ApiDataProvider {
 			AF.request(url, method: method, parameters: method == .get ? nil : params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 				switch response.result {
 				case .success(let data):
-					guard let data = data as? ResultType else {
+					let decoder = DictionaryDecoder()
+					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
 						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))
 					}
-					resolver.fulfill(data)
+					resolver.fulfill(decodedData)
 				case .failure(let error):
 					resolver.reject(error)
 				}

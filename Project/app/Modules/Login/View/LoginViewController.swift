@@ -114,8 +114,7 @@ private extension Login.VC {
 	func setupRadioButton() {
 		radioButton.snp.makeConstraints { make in
 			make.top.equalTo(passwordTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
-			make.leading.equalToSuperview().offset(StyleKit.metrics.padding.medium)
-			make.trailing.lessThanOrEqualToSuperview().inset(StyleKit.metrics.padding.medium)
+			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
 		}
 	}

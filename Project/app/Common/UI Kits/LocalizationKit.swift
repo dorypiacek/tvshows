@@ -16,7 +16,8 @@ struct LocalizationKit {
 extension LocalizationKit {
 	struct General {
 		let ok = "Ok"
-		let errorTitle = "Something went wrong."
+		let errorTitle = "Error"
+		let errorMessage = "Something went wrong. Please try again later."
 	}
 
 	struct Login {

@@ -11,6 +11,8 @@ import PromiseKit
 import ETPersistentValue
 import ETBinding
 
+// MARK: - Protocol definition
+
 protocol LoginVMType {
 	var iconName: String { get }
 	var radioButtonContent: LiveOptionalData<RadioButton.Content> { get }
@@ -22,8 +24,7 @@ protocol LoginVMType {
 extension Login {
 	final class VM: LoginVMType {
 
-		// MARK: - Variables
-		// MARK: - Public
+		// MARK: - Public variables
 
 		var iconName: String = "img-login-logo"
 		var radioButtonContent: LiveOptionalData<RadioButton.Content> = LiveOptionalData(data: nil)
@@ -34,7 +35,7 @@ extension Login {
 		var onDidLogin: (() -> Void)?
 		var onShowAlert: ((AlertConfig) -> Void)?
 
-		// MARK: - Private
+		// MARK: - Private variables
 
 		private var dataProvider: LoginDataProviderType
 
@@ -43,6 +44,7 @@ extension Login {
 		private var email: String?
 		private var password: String?
 
+		private var isPasswordHidden: Bool = true
 		private var isLoading: Bool = false {
 			didSet {
 				setupContent()
@@ -53,37 +55,49 @@ extension Login {
 
 		init(dataProvider: LoginDataProviderType) {
 			self.dataProvider = dataProvider
+			readCredentials()
 			setupContent()
-		}
-
-		func login() {
-			guard let email = email, let password = password else {
-				return
-			}
-			let credentials = UserCredentials(email: email, password: password)
-
-			isLoading = true
-			dataProvider
-				.login(with: credentials)
-				.done { data in
-					PersistentString(value: data.data.token, account: PersistentKey.accessToken).save()
-					if self.rememberCredentials {
-						PersistentCodable(value: credentials, account: PersistentKey.userCredentials).save()
-					}
-					print("🎉")
-					self.onDidLogin?()
-				}
-				.ensure {
-					self.isLoading = false
-				}
-				.catch { error in
-					self.onShowAlert?(self.makeErrorAlertConfig(with: error))
-				}
 		}
 	}
 }
 
 private extension Login.VM {
+
+	// MARK: - Private methods
+	// MARK: - Networking
+
+	func login() {
+		guard let email = email, let password = password else {
+			return
+		}
+		let credentials = UserCredentials(email: email, password: password)
+
+		isLoading = true
+		dataProvider
+			.login(with: credentials)
+			.done { data in
+				PersistentString(key: PersistentKey.accessToken, value: data.data.token).save()
+				self.rememberCredentials ? PersistentCodable(key: PersistentKey.userCredentials, value: credentials).save() : PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).remove()
+				self.onDidLogin?()
+			}
+			.ensure {
+				self.isLoading = false
+			}
+			.catch { error in
+				self.onShowAlert?(self.makeErrorAlertConfig(with: error))
+			}
+	}
+
+	// MARK: - Content setup
+
+	func readCredentials() {
+		if let credentials = PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).value {
+			email = credentials.email
+			password = credentials.password
+			rememberCredentials = true
+		}
+	}
+
 	func setupContent() {
 		setupButtons()
 		setupTextFields()
@@ -111,19 +125,16 @@ private extension Login.VM {
 	func setupTextFields() {
 		emailTextFieldContent.data = UnderlinedTextField.Content(
 				text: email,
-				error: false,
 				placeholder: LocalizationKit.login.emailPlaceholder,
 				textDidChange: { [unowned self] text in
 					self.email = text
 					self.setupContent()
 				},
 				keyboardType: .emailAddress,
-				returnKeyType: .next,
-				validator: self
+				returnKeyType: .next
 		)
 		passwordTextFieldContent.data = UnderlinedTextField.Content(
 				text: password,
-				error: false,
 				placeholder: LocalizationKit.login.passwordPlaceholder,
 				textDidChange: { [unowned self] text in
 					self.password = text
@@ -131,7 +142,16 @@ private extension Login.VM {
 				},
 				keyboardType: .default,
 				returnKeyType: .done,
-				validator: self
+				isSecured: isPasswordHidden,
+				rightView: UnderlinedTextField.RightViewContent(
+					normalIcon: "ic-hide-password",
+					selectedIcon: "ic-characters-hide",
+					isSelected: !isPasswordHidden,
+					action: { [unowned self] in
+						self.isPasswordHidden = !self.isPasswordHidden
+						self.setupContent()
+				}
+			)
 		)
 	}
 
@@ -139,16 +159,9 @@ private extension Login.VM {
 		let action = AlertAction(title: LocalizationKit.general.ok, style: .default, handler: nil)
 		return AlertConfig(
 			title: LocalizationKit.general.errorTitle,
-			// TODO: Localize.
-			message: "\(error.localizedDescription)\n Please try again later.",
+			message: LocalizationKit.general.errorMessage,
 			style: .alert,
 			actions: [action]
 		)
-	}
-}
-
-extension Login.VM: InputValidatorType {
-	func shouldChangeCharacters(of text: String?, in range: NSRange, replacementString string: String) -> Bool {
-		text?.isEmpty ?? true
 	}
 }

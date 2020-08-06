@@ -40,7 +40,6 @@ final class PrimaryButton: UIButton {
 		backgroundColor = content.isEnabled ? StyleKit.color.brand : StyleKit.color.buttonDisabled
 		isEnabled = content.isEnabled
 		content.isLoading ? startLoading() : stopLoading()
-		
 	}
 }
 

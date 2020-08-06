@@ -9,11 +9,16 @@
 import Foundation
 import UIKit
 import SnapKit
+import JVFloatLabeledTextField
 
-final class UnderlinedTextField: UITextField {
+final class UnderlinedTextField: JVFloatLabeledTextField {
+
+	// MARK: - Private variables
+
     private let separator = UIView()
+	private var rightViewButton: UIButton?
 
-    var validator: InputValidatorType?
+	// MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: .zero)
@@ -24,6 +29,8 @@ final class UnderlinedTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
+	// MARK: - Override methods
+
 	override func textRect(forBounds bounds: CGRect) -> CGRect {
 		bounds.insetBy(dx: 0, dy: StyleKit.metrics.padding.small)
 	}
@@ -32,11 +39,33 @@ final class UnderlinedTextField: UITextField {
 		bounds.insetBy(dx: 0, dy: StyleKit.metrics.padding.small)
 	}
 
-    private func setupUI() {
+	// MARK: - Public methods
+
+    func update(with content: Content) {
+        text = content.text
+        placeholder = content.placeholder
+        keyboardType = content.keyboardType
+		returnKeyType = content.returnKeyType
+		isSecureTextEntry = content.isSecured
+        replaceAction(for: .editingChanged) { [unowned self] in
+            content.textDidChange?(self.text ?? "")
+        }
+
+		updateRightView(with: content.rightView)
+    }
+}
+
+private extension UnderlinedTextField {
+
+	// MARK: - Private methods
+
+    func setupUI() {
 		font = StyleKit.font.title3
 		textColor = StyleKit.color.darkGrayText
+		floatingLabelFont = StyleKit.font.caption1
+		floatingLabelTextColor = StyleKit.color.lightGrayText
+		tintColor = StyleKit.color.lightGrayText
 		attributedPlaceholder = NSAttributedString(string: "", attributes: [.foregroundColor: StyleKit.color.lightGrayText])
-        smartInsertDeleteType = .no
         returnKeyType = .done
         replaceAction(for: .editingDidEndOnExit) { [unowned self] in
             self.resignFirstResponder()
@@ -50,57 +79,51 @@ final class UnderlinedTextField: UITextField {
         }
     }
 
-    func update(with content: Content) {
-        text = content.text
-        placeholder = content.placeholder
-        keyboardType = content.keyboardType
-		returnKeyType = content.returnKeyType
-        replaceAction(for: .editingChanged) { [unowned self] in
-            content.textDidChange?(self.text ?? "")
-        }
-
-        if content.error {
-            tintColor = StyleKit.color.brand
-			textColor = StyleKit.color.brand
-			attributedPlaceholder = NSAttributedString(string: content.placeholder ?? "", attributes: [.foregroundColor: StyleKit.color.brand])
-            separator.backgroundColor = StyleKit.color.brand
-        } else {
-            textColor = StyleKit.color.darkGrayText
-            tintColor = StyleKit.color.darkGrayText
-            attributedPlaceholder = NSAttributedString(string: content.placeholder ?? "", attributes: [.foregroundColor: StyleKit.color.lightGrayText])
-			separator.backgroundColor = StyleKit.color.separator
-        }
-
-        validator = content.validator
-    }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let validator = validator else {
-            return true
-        }
-
-        return validator.shouldChangeCharacters(of: textField.text, in: range, replacementString: string)
-    }
+	func updateRightView(with content: RightViewContent?) {
+		if let content = content {
+			if rightViewButton == nil {
+				rightViewButton = UIButton(type: .custom)
+			}
+			rightViewMode = .always
+			rightView = rightViewButton
+			rightViewButton?.isSelected = content.isSelected
+			rightViewButton?.setImage(UIImage(named: content.isSelected ? content.selectedIcon : content.normalIcon), for: .normal)
+			rightViewButton?.replaceAction(for: .touchUpInside, content.action)
+		} else {
+			rightViewButton = nil
+			rightView = nil
+			rightViewMode = .never
+		}
+	}
 }
 
+// MARK: - Content
+
 extension UnderlinedTextField {
+	struct RightViewContent {
+		var normalIcon: String
+		var selectedIcon: String
+		var isSelected: Bool
+		var action: (() -> Void)
+	}
+
 	struct Content {
 		let text: String?
-		let error: Bool
 		var placeholder: String?
 		let textDidChange: ((String) -> Void)?
 		let keyboardType: UIKeyboardType
 		let returnKeyType: UIReturnKeyType
-		let validator: InputValidatorType?
+		let isSecured: Bool
+		let rightView: RightViewContent?
 
-		init(text: String?, error: Bool, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, validator: InputValidatorType? = nil) {
+		init(text: String?, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, rightView: RightViewContent? = nil) {
 			self.text = text
-			self.error = error
 			self.placeholder = placeholder
 			self.textDidChange = textDidChange
 			self.keyboardType = keyboardType
-			self.validator = validator
 			self.returnKeyType = returnKeyType
+			self.isSecured = isSecured
+			self.rightView = rightView
 		}
 	}
 }
