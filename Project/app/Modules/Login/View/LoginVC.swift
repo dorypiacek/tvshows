@@ -10,49 +10,47 @@ import Foundation
 import UIKit
 import ETBinding
 
-extension Login {
-	final class VC: UIViewController {
-		// MARK: - Variables
-		// MARK: - Private
+final class LoginVC: UIViewController {
+	// MARK: - Variables
+	// MARK: - Private
 
-		private var vm: LoginVMType
+	private var vm: LoginVMType
 
-		private lazy var imageView = UIImageView(image: UIImage(named: vm.iconName))
-		private let emailTextField = UnderlinedTextField()
-		private let passwordTextField = UnderlinedTextField()
-		private let radioButton = RadioButton()
-		private let loginButton = PrimaryButton()
+	private lazy var imageView = UIImageView(image: UIImage(named: vm.iconName))
+	private let emailTextField = UnderlinedTextField()
+	private let passwordTextField = UnderlinedTextField()
+	private let radioButton = RadioButton()
+	private let loginButton = PrimaryButton()
 
-		// MARK: - Initializers
+	// MARK: - Initializers
 
-		init(vm: LoginVMType) {
-			self.vm = vm
-			super.init(nibName: nil, bundle: nil)
-		}
+	init(vm: LoginVMType) {
+		self.vm = vm
+		super.init(nibName: nil, bundle: nil)
+	}
 
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-		// MARK: - ViewController lifecycle
+	// MARK: - ViewController lifecycle
 
-		override func loadView() {
-			super.loadView()
-			setupUI()
-		}
+	override func loadView() {
+		super.loadView()
+		setupUI()
+	}
 
-		override func viewDidLoad() {
-			super.viewDidLoad()
-			bind()
-		}
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		bindObservers()
 	}
 }
 
-private extension Login.VC {
+private extension LoginVC {
 
 	// MARK: - Private
 
-	func bind() {
+	func bindObservers() {
 		vm.emailTextFieldContent.observe(owner: self) { [unowned self] content in
 			if let content = content {
 				self.emailTextField.update(with: content)
@@ -86,7 +84,8 @@ private extension Login.VC {
 		[imageView, emailTextField, passwordTextField, radioButton, loginButton].forEach(view.addSubview)
 
 		setupImageView()
-		setupTextFields()
+		setupEmailTextField()
+		setupPasswordTextField()
 		setupRadioButton()
 		setupLoginButton()
 	}
@@ -99,12 +98,23 @@ private extension Login.VC {
 		}
 	}
 
-	func setupTextFields() {
+	func setupEmailTextField() {
+		emailTextField.returnKeyType = .next
+		emailTextField.addAction(for: .editingDidEnd) { [unowned self] in
+			self.emailTextField.resignFirstResponder()
+			self.passwordTextField.becomeFirstResponder()
+		}
 		emailTextField.snp.makeConstraints { make in
 			make.top.equalTo(imageView.snp.bottom).offset(StyleKit.metrics.padding.large)
 			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
 		}
+	}
 
+	func setupPasswordTextField() {
+		passwordTextField.returnKeyType = .done
+		passwordTextField.addAction(for: .editingDidEnd) { [unowned self] in
+			self.vm.login()
+		}
 		passwordTextField.snp.makeConstraints { make in
 			make.top.equalTo(emailTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
 			make.leading.trailing.equalTo(emailTextField)

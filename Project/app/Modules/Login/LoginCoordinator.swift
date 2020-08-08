@@ -9,20 +9,18 @@
 import Foundation
 import UIKit
 
-extension Login {
-	final class Coord: BaseCoordinator {
-		override func start() {
-			let dataProvider = ApiDataProvider() as LoginDataProviderType
-			let vm = VM(dataProvider: dataProvider)
-			vm.onDidLogin = {
-				// TODO: Show TV Shows list
-			}
-			vm.onShowAlert = { [weak self] config in
-				self?.showAlert(with: config)
-			}
-			let vc = VC(vm: vm)
-			vc.modalPresentationStyle = .overFullScreen
-			presenter.present(vc, animated: false, completion: nil)
+final class LoginCoordinator: BaseCoordinator {
+	override func start() {
+		let dataProvider = ApiDataProvider() as LoginDataProviderType
+		let vm = LoginVM(dataProvider: dataProvider)
+		vm.onDidLogin = {
+			// TODO: Show TV Shows list
 		}
+		vm.onShowAlert = { [weak self] config in
+			self?.showAlert(with: config)
+		}
+		let vc = LoginVC(vm: vm)
+		vc.modalPresentationStyle = .overFullScreen
+		presenter.present(vc, animated: false, completion: nil)
 	}
 }

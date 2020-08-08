@@ -16,19 +16,16 @@ class BaseCoordinator: Coordinator {
 		self.presenter = presenter
 	}
 
-	func start() {
-
-	}
+	func start() {}
 
 	func showAlert(with config: AlertConfig) {
 		let alert = UIAlertController(title: config.title, message: config.message, preferredStyle: config.style)
 		config.actions.forEach { action in
-			let action = UIAlertAction(
+			alert.addAction(UIAlertAction(
 				title: action.title,
 				style: action.style,
 				handler: action.handler
-			)
-			alert.addAction(action)
+			))
 		}
 		presenter.presentedViewController?.present(alert, animated: true, completion: nil)
 	}

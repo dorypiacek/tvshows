@@ -1,20 +1,13 @@
 //
-//  AlertConfig.swift
+//  AlertAction.swift
 //  TV Shows
 //
-//  Created by Dorota Piačeková on 04/08/2020.
+//  Created by Dorota Piačeková on 08/08/2020.
 //  Copyright © 2020 Dorota Piačeková. All rights reserved.
 //
 
 import Foundation
 import UIKit
-
-struct AlertConfig {
-	let title: String
-	let message: String
-	let style: UIAlertController.Style
-	let actions: [AlertAction]
-}
 
 struct AlertAction {
 	let title: String
