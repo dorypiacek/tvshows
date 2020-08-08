@@ -10,40 +10,51 @@ import Foundation
 import UIKit
 import Kingfisher
 
-extension ShowsList {
-	final class Cell: UITableViewCell {
-		struct Content {
-			let id: String
-			let imageURL: URL?
-			let title: String
-			let didSelect: () -> Void
-		}
+final class ShowsListCell: UITableViewCell {
 
-		private let titleLabel = UILabel()
-		private let thumbnailImageView = UIImageView()
+	// MARK: Private variables
 
-		override func layoutSubviews() {
-			super.layoutSubviews()
-			setupUI()
-		}
+	private let titleLabel = UILabel()
+	private let thumbnailImageView = UIImageView()
 
-		override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-			super.init(style: .default, reuseIdentifier: reuseIdentifier)
-			setupUI()
-		}
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		setupUI()
+	}
 
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	// MARK: - Initializers
 
-		func update(with content: Content) {
-			titleLabel.text = content.title
-			thumbnailImageView.kf.setImage(with: content.imageURL)
-		}
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: .default, reuseIdentifier: reuseIdentifier)
+		setupUI()
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	// MARK: - Public methods
+
+	func update(with content: Content) {
+		titleLabel.text = content.title
+		thumbnailImageView.kf.setImage(with: content.imageURL)
 	}
 }
 
-private extension ShowsList.Cell {
+// MARK: - Content
+
+extension ShowsListCell {
+	struct Content {
+		let id: String
+		let imageURL: URL?
+		let title: String
+		let didSelect: () -> Void
+	}
+}
+
+// MARK: - Private methods
+
+private extension ShowsListCell {
 	func setupUI() {
 		contentView.addSubview(thumbnailImageView)
 		contentView.addSubview(titleLabel)

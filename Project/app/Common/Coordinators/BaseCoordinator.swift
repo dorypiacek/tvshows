@@ -17,9 +17,8 @@ class BaseCoordinator: Coordinator {
 		self.presenter = presenter
 	}
 
-	func start() {
-		// Used for overrides
-	}
+	// Used for overrides
+	func start() {}
 
 	func stop() {
 		presenter.presentedViewController?.dismiss(animated: true, completion: { [weak self] in
@@ -30,12 +29,11 @@ class BaseCoordinator: Coordinator {
 	func showAlert(with config: AlertConfig) {
 		let alert = UIAlertController(title: config.title, message: config.message, preferredStyle: config.style)
 		config.actions.forEach { action in
-			let action = UIAlertAction(
+			alert.addAction(UIAlertAction(
 				title: action.title,
 				style: action.style,
 				handler: action.handler
-			)
-			alert.addAction(action)
+			))
 		}
 		presenter.presentedViewController?.present(alert, animated: true, completion: nil)
 	}

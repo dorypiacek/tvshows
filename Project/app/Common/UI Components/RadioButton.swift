@@ -10,11 +10,6 @@ import Foundation
 import UIKit
 
 final class RadioButton: UIButton {
-	struct Content {
-		let title: String
-		let isSelected: Bool
-		let action: () -> Void
-	}
 
 	// MARK: - Innitializers
 
@@ -36,13 +31,23 @@ final class RadioButton: UIButton {
 	}
 }
 
+// MARK: - Content
+
+extension RadioButton {
+	struct Content {
+		let title: String
+		let isSelected: Bool
+		let action: () -> Void
+	}
+}
+
 private extension RadioButton {
 
 	// MARK: - Private
 
 	func setupUI() {
-		setImage(UIImage(named: "ic-checkbox-empty"), for: .normal)
-		setImage(UIImage(named: "ic-checkbox-filled"), for: .selected)
+		setImage(UIImage(named: StyleKit.image.checkbox.empty), for: .normal)
+		setImage(UIImage(named: StyleKit.image.checkbox.filled), for: .selected)
 		setTitleColor(StyleKit.color.defaultText, for: .normal)
 		titleLabel?.font = StyleKit.font.callout
 		titleLabel?.textAlignment = .left

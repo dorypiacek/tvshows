@@ -13,11 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	private var loginCoord: Login.Coord?
+	private var loginCoord: LoginCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		let navigationController = UINavigationController()
-		loginCoord = Login.Coord(presenter: navigationController)
+		loginCoord = LoginCoordinator(presenter: navigationController)
 
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .white

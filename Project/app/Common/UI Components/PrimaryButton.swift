@@ -11,12 +11,6 @@ import UIKit
 import SnapKit
 
 final class PrimaryButton: UIButton {
-	struct Content {
-		let title: String
-		let isEnabled: Bool
-		let isLoading: Bool
-		let action: () -> Void
-	}
 
 	// MARK: - Variables
 	// MARK: - Private
@@ -42,6 +36,19 @@ final class PrimaryButton: UIButton {
 		content.isLoading ? startLoading() : stopLoading()
 	}
 }
+
+// MARK: - Content
+
+extension PrimaryButton {
+	struct Content {
+		let title: String
+		let isEnabled: Bool
+		let isLoading: Bool
+		let action: () -> Void
+	}
+}
+
+// MARK: Private methods
 
 private extension PrimaryButton {
 	func setupUI() {

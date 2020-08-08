@@ -14,4 +14,5 @@ struct StyleKit {
     static let color = ColorKit()
     static let font = FontKit()
     static let metrics = Metrics()
+	static let image = ImageKit()
 }

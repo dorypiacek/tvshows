@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PromiseKit
 
 typealias AccessToken = String
 

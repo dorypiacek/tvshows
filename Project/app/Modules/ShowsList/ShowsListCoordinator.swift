@@ -9,20 +9,18 @@
 import Foundation
 import UIKit
 
-extension ShowsList {
-	final class Coord: BaseCoordinator {
-		override func start() {
-			let dataProvider = ApiDataProvider() as ShowsListDataProviderType
-			let vm = VM(dataProvider: dataProvider)
-			vm.onSelect = { _ in
-				// TODO: Implement show detail.
-			}
-			vm.onLogout = { [weak self] in
-				self?.stop()
-			}
-			let vc = VC(vm: vm)
-			vc.modalPresentationStyle = .fullScreen
-			presenter.presentedViewController?.present(vc, animated: true, completion: nil)
+final class ShowsListCoordinator: BaseCoordinator {
+	override func start() {
+		let dataProvider = ApiDataProvider() as ShowsListDataProviderType
+		let vm = ShowsListVM(dataProvider: dataProvider)
+		vm.onSelect = { _ in
+			// TODO: Implement show detail.
 		}
+		vm.onLogout = { [weak self] in
+			self?.stop()
+		}
+		let vc = ShowsListVC(vm: vm)
+		vc.modalPresentationStyle = .fullScreen
+		presenter.presentedViewController?.present(vc, animated: true, completion: nil)
 	}
 }

@@ -9,29 +9,28 @@
 import Foundation
 import UIKit
 
-extension Login {
-	final class Coord: BaseCoordinator {
-		private var listCoord: ShowsList.Coord?
+final class LoginCoordinator: BaseCoordinator {
 
-		override func start() {
-			let dataProvider = ApiDataProvider() as LoginDataProviderType
-			let vm = VM(dataProvider: dataProvider)
-			vm.onDidLogin = { [weak self] in
-				self?.showList()
-			}
-			vm.onShowAlert = { [weak self] config in
-				self?.showAlert(with: config)
-			}
-			let vc = VC(vm: vm)
-			vc.modalPresentationStyle = .fullScreen
-			presenter.present(vc, animated: false, completion: nil)
+	private var listCoord: ShowsListCoordinator?
+
+	override func start() {
+		let dataProvider = ApiDataProvider() as LoginDataProviderType
+		let vm = LoginVM(dataProvider: dataProvider)
+		vm.onDidLogin = { [weak self] in
+			self?.showList()
 		}
+		vm.onShowAlert = { [weak self] config in
+			self?.showAlert(with: config)
+		}
+		let vc = LoginVC(vm: vm)
+		vc.modalPresentationStyle = .fullScreen
+		presenter.present(vc, animated: false, completion: nil)
 	}
 }
 
-private extension Login.Coord {
+private extension LoginCoordinator {
 	func showList() {
-		listCoord = ShowsList.Coord(presenter: presenter)
+		listCoord = ShowsListCoordinator(presenter: presenter)
 		listCoord?.onDidStop = { [weak self] in
 			self?.listCoord = nil
 		}

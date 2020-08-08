@@ -1,5 +1,5 @@
 //
-//  ShowsListViewController.swift
+//  ShowsListVC.swift
 //  TV Shows
 //
 //  Created by Dorota Piačeková on 06/08/2020.
@@ -10,50 +10,48 @@ import Foundation
 import UIKit
 import ETBinding
 
-extension ShowsList {
-	final class VC: UIViewController {
+final class ShowsListVC: UIViewController {
 
-		// MARK: Private variables
+	// MARK: Private variables
 
-		private var vm: ShowsListVMType
+	private var vm: ShowsListVMType
 
-		private let tableView = UITableView()
-		private let headerView = HeaderView()
+	private let tableView = UITableView()
+	private let headerView = ShowsListHeaderView()
 
-		private let reuseIdentifier = "ShowsListCell"
-		private var content: [Cell.Content] = [] {
-			didSet {
-				tableView.reloadData()
-			}
+	private let reuseIdentifier = "ShowsListCell"
+	private var content: [ShowsListCell.Content] = [] {
+		didSet {
+			tableView.reloadData()
 		}
+	}
 
-		// MARK: - Initializers
+	// MARK: - Initializers
 
-		init(vm: ShowsListVMType) {
-			self.vm = vm
-			super.init(nibName: nil, bundle: nil)
-		}
+	init(vm: ShowsListVMType) {
+		self.vm = vm
+		super.init(nibName: nil, bundle: nil)
+	}
 
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-		// MARK: - ViewController lifecycle
+	// MARK: - ViewController lifecycle
 
-		override func loadView() {
-			super.loadView()
-			setupUI()
-		}
+	override func loadView() {
+		super.loadView()
+		setupUI()
+	}
 
-		override func viewDidLoad() {
-			super.viewDidLoad()
-			bind()
-			vm.load()
-		}
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		bind()
+		vm.load()
 	}
 }
 
-private extension ShowsList.VC {
+private extension ShowsListVC {
 
 	// MARK: - Private methods
 
@@ -91,7 +89,7 @@ private extension ShowsList.VC {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none
-		tableView.register(ShowsList.Cell.self, forCellReuseIdentifier: reuseIdentifier)
+		tableView.register(ShowsListCell.self, forCellReuseIdentifier: reuseIdentifier)
 		tableView.snp.makeConstraints { make in
 			make.top.equalTo(headerView.snp.bottom)
 			make.leading.trailing.bottom.equalToSuperview()
@@ -99,21 +97,22 @@ private extension ShowsList.VC {
 	}
 }
 
-extension ShowsList.VC: UITableViewDelegate {
+
+extension ShowsListVC: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		vm.tableContent.data[indexPath.row].didSelect()
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
 
-extension ShowsList.VC: UITableViewDataSource {
+extension ShowsListVC: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		vm.tableContent.data.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? ShowsList.Cell else {
-			let cell = ShowsList.Cell(style: .default, reuseIdentifier: reuseIdentifier)
+		guard let cell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? ShowsListCell else {
+			let cell = ShowsListCell(style: .default, reuseIdentifier: reuseIdentifier)
 			cell.update(with: vm.tableContent.data[indexPath.row])
 			return cell
 		}

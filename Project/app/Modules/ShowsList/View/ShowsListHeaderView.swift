@@ -9,35 +9,46 @@
 import Foundation
 import UIKit
 
-extension ShowsList {
-	final class HeaderView: UIView {
-		struct Content {
-			let title: String
-			let iconName: String
-			let action: () -> Void
-		}
+final class ShowsListHeaderView: UIView {
 
-		private let titleLabel = UILabel()
-		private let button = UIButton()
+	// MARK: - Private variables
 
-		init() {
-			super.init(frame: .zero)
-			setupUI()
-		}
+	private let titleLabel = UILabel()
+	private let button = UIButton()
 
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	// MARK: - Initializers
 
-		func update(with content: Content) {
-			titleLabel.text = content.title
-			button.setImage(UIImage(named: content.iconName), for: .normal)
-			button.replaceAction(for: .touchUpInside, content.action)
-		}
+	init() {
+		super.init(frame: .zero)
+		setupUI()
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	// MARK: - Public methods
+
+	func update(with content: Content) {
+		titleLabel.text = content.title
+		button.setImage(UIImage(named: content.iconName), for: .normal)
+		button.replaceAction(for: .touchUpInside, content.action)
 	}
 }
 
-private extension ShowsList.HeaderView {
+// MARK: - Content
+
+extension ShowsListHeaderView {
+	struct Content {
+		let title: String
+		let iconName: String
+		let action: () -> Void
+	}
+}
+
+// MARK: - Private methods
+
+private extension ShowsListHeaderView {
 	func setupUI() {
 		addSubview(titleLabel)
 		addSubview(button)
