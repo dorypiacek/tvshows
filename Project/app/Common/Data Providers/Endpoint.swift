@@ -15,6 +15,7 @@ enum Endpoint {
     case list
 	case detail(String)
 	case episodes(String)
+	case image(String)
 
 	// MARK: - Variables
 	// MARK: - Public
@@ -50,6 +51,7 @@ private extension Endpoint {
         case .list: return "api/shows"
 		case .detail(let id): return "api/shows/\(id)"
 		case .episodes(let id): return "api/shows/\(id)/episodes"
+		case .image(let path): return path
         }
     }
 

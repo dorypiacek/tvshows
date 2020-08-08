@@ -2,6 +2,9 @@ PODS:
   - Alamofire (5.2.1)
   - ETBinding (3.0)
   - JVFloatLabeledTextField (1.2.2)
+  - Kingfisher (5.14.1):
+    - Kingfisher/Core (= 5.14.1)
+  - Kingfisher/Core (5.14.1)
   - PromiseKit (6.13.1):
     - PromiseKit/CorePromise (= 6.13.1)
     - PromiseKit/Foundation (= 6.13.1)
@@ -18,6 +21,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - ETBinding
   - JVFloatLabeledTextField
+  - Kingfisher (~> 5.0)
   - PromiseKit (~> 6.8)
   - SnapKit (~> 5.0.0)
   - SwiftLint
@@ -27,6 +31,7 @@ SPEC REPOS:
     - Alamofire
     - ETBinding
     - JVFloatLabeledTextField
+    - Kingfisher
     - PromiseKit
     - SnapKit
     - SwiftLint
@@ -35,10 +40,11 @@ SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   ETBinding: 27be01c2b38dbc88b63189a0ca05187cd24be2ec
   JVFloatLabeledTextField: df48598472ee015701d509f43e59492a0d4ca208
+  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: ee3ee0c189eb77c08380b31577e8fc90f457c856
+PODFILE CHECKSUM: 8eabd9545487aadb7cc06b7378da6cd714549e69
 
 COCOAPODS: 1.9.3

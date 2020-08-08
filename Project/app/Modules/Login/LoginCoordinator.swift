@@ -23,7 +23,7 @@ extension Login {
 				self?.showAlert(with: config)
 			}
 			let vc = VC(vm: vm)
-			vc.modalPresentationStyle = .overFullScreen
+			vc.modalPresentationStyle = .fullScreen
 			presenter.present(vc, animated: false, completion: nil)
 		}
 	}

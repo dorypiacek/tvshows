@@ -19,6 +19,7 @@ protocol LoginVMType {
 	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> { get }
 	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> { get }
 	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> { get }
+	func readCredentials()
 }
 
 extension Login {
@@ -58,6 +59,16 @@ extension Login {
 			readCredentials()
 			setupContent()
 		}
+
+		// MARK: - Public methods
+
+		func readCredentials() {
+			let credentials = PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).value
+			email = credentials?.email ?? nil
+			password = credentials?.password ?? nil
+			rememberCredentials = credentials != nil
+			setupContent()
+		}
 	}
 }
 
@@ -89,14 +100,6 @@ private extension Login.VM {
 	}
 
 	// MARK: - Content setup
-
-	func readCredentials() {
-		if let credentials = PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).value {
-			email = credentials.email
-			password = credentials.password
-			rememberCredentials = true
-		}
-	}
 
 	func setupContent() {
 		setupButtons()

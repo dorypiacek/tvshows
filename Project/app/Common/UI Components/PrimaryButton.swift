@@ -38,7 +38,7 @@ final class PrimaryButton: UIButton {
 		setTitle(content.isLoading ? "" : content.title, for: .normal)
 		replaceAction(for: .touchUpInside, content.action)
 		backgroundColor = content.isEnabled ? StyleKit.color.brand : StyleKit.color.buttonDisabled
-		isEnabled = content.isEnabled
+		isEnabled = content.isEnabled && !content.isLoading
 		content.isLoading ? startLoading() : stopLoading()
 	}
 }

@@ -53,7 +53,7 @@ private extension ShowsList.HeaderView {
 		titleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview()
 			make.trailing.lessThanOrEqualTo(button.snp.leading)
-			make.top.bottom.equalToSuperview().offset(StyleKit.metrics.padding.medium)
+			make.top.bottom.equalToSuperview().inset(StyleKit.metrics.padding.medium)
 		}
 	}
 

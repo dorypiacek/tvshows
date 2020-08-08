@@ -45,6 +45,11 @@ extension Login {
 			super.viewDidLoad()
 			bind()
 		}
+
+		override func viewWillAppear(_ animated: Bool) {
+			super.viewWillAppear(animated)
+			vm.readCredentials()
+		}
 	}
 }
 

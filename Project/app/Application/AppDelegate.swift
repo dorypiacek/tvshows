@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.backgroundColor = .white
 		window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-		loginCoord?.start()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+			self?.loginCoord?.start()
+		}
         return true
     }
 }

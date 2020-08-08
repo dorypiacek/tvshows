@@ -21,7 +21,7 @@ extension ShowsList {
 				self?.stop()
 			}
 			let vc = VC(vm: vm)
-			vc.modalPresentationStyle = .overFullScreen
+			vc.modalPresentationStyle = .fullScreen
 			presenter.presentedViewController?.present(vc, animated: true, completion: nil)
 		}
 	}

@@ -55,7 +55,6 @@ final class ApiDataProvider {
 			AF.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 				switch response.result {
 				case .success(let data):
-					print(data)
 					let decoder = DictionaryDecoder()
 					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
 						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))

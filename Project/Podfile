@@ -12,5 +12,6 @@ target 'TV Shows' do
   pod "PromiseKit", "~> 6.8"
   pod 'ETBinding'
   pod 'JVFloatLabeledTextField'
+  pod 'Kingfisher', '~> 5.0'
   
 end
