@@ -73,27 +73,27 @@ private extension LoginVC {
 	// MARK: - Private
 
 	func bindObservers() {
-		vm.emailTextFieldContent.observe(owner: self) { [unowned self] content in
+		vm.emailTextFieldContent.observe(owner: self) { [weak self] content in
 			if let content = content {
-				self.emailTextField.update(with: content)
+				self?.emailTextField.update(with: content)
 			}
 		}
 		vm.emailTextFieldContent.dispatch()
-		vm.passwordTextFieldContent.observe(owner: self) { [unowned self] content in
+		vm.passwordTextFieldContent.observe(owner: self) { [weak self] content in
 			if let content = content {
-				self.passwordTextField.update(with: content)
+				self?.passwordTextField.update(with: content)
 			}
 		}
 		vm.passwordTextFieldContent.dispatch()
-		vm.checkboxButtonContent.observe(owner: self) { [unowned self] content in
+		vm.checkboxButtonContent.observe(owner: self) { [weak self] content in
 			if let content = content {
-				self.checkboxButton.update(with: content)
+				self?.checkboxButton.update(with: content)
 			}
 		}
 		vm.checkboxButtonContent.dispatch()
-		vm.loginButtonContent.observe(owner: self) { [unowned self] content in
+		vm.loginButtonContent.observe(owner: self) { [weak self] content in
 			if let content = content {
-				self.loginButton.update(with: content)
+				self?.loginButton.update(with: content)
 			}
 		}
 		vm.loginButtonContent.dispatch()

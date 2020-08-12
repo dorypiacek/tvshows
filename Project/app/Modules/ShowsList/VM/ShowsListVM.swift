@@ -10,11 +10,17 @@ import Foundation
 import ETBinding
 
 final class ShowsListVM: ShowsListVMType {
+	enum State {
+		case loading
+		case loaded
+		case error(Error?)
+	}
 
 	// MARK: Public variables
 
 	var tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
 	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
+	var placeholderContent: LiveOptionalData<PlaceholderView.Content> = LiveOptionalData(data: nil)
 
 	var onSelect: ((TVShow) -> Void)?
 	var onLogout: (() -> Void)?
@@ -23,6 +29,11 @@ final class ShowsListVM: ShowsListVMType {
 
 	private var dataProvider: ShowsListDataProviderType
 	private var shows: [TVShow] = []
+	private var state: State = .loading {
+		didSet {
+			updatePlaceholder()
+		}
+	}
 
 	// MARK: Initializer
 
@@ -39,10 +50,11 @@ final class ShowsListVM: ShowsListVMType {
 			.done { data in
 				self.shows = data.data
 				self.setupContent()
-		}
-		.catch { error in
-			// TODO: Implement error & empty placeholder
-		}
+				self.state = .loaded
+			}
+			.catch { error in
+				self.state = .error(error)
+			}
 	}
 }
 
@@ -53,14 +65,15 @@ private extension ShowsListVM {
 	func setupContent() {
 		setupHeader()
 		setupTableContent()
+		updatePlaceholder()
 	}
 
 	func setupHeader() {
 		headerContent.data = ShowsListHeaderView.Content(
 			title: LocalizationKit.showsList.title,
 			iconName: "ic-logout",
-			action: { [unowned self] in
-				self.onLogout?()
+			action: { [weak self] in
+				self?.onLogout?()
 			}
 		)
 	}
@@ -72,10 +85,38 @@ private extension ShowsListVM {
 				id: show.id,
 				imageURL: url,
 				title: show.title,
-				didSelect: { [unowned self] in
-					self.onSelect?(show)
+				didSelect: { [weak self] in
+					self?.onSelect?(show)
 				}
 			)
+		}
+	}
+
+	func updatePlaceholder() {
+		switch state {
+		case .loading:
+			placeholderContent.data = PlaceholderView.Content(
+				title: LocalizationKit.general.loading,
+				isLoading: true
+			)
+		case .error(let error):
+			var isNoInternetError = false
+			if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+				isNoInternetError = true
+			}
+			placeholderContent.data = PlaceholderView.Content(
+				title: isNoInternetError ? LocalizationKit.general.noInternetErrorTitle : LocalizationKit.general.errorTitle,
+				subtitle: isNoInternetError ? LocalizationKit.general.noInternetErrorMessage : LocalizationKit.general.errorMessage,
+				isLoading: false,
+				button: ButtonContent(
+					title: LocalizationKit.general.tryAgain,
+					action: { [weak self] in
+						self?.load()
+					}
+				)
+			)
+		case .loaded:
+			placeholderContent.data = nil
 		}
 	}
 }

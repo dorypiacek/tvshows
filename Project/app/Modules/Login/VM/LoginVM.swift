@@ -93,7 +93,10 @@ private extension LoginVM {
 		checkboxButtonContent.data = CheckboxButton.Content(
 			title: LocalizationKit.login.radioButtonTitle,
 			isSelected: rememberCredentials,
-			action: { [unowned self] in
+			action: { [weak self] in
+				guard let self = self else {
+					return
+				}
 				self.rememberCredentials = !self.rememberCredentials
 				self.setupContent()
 			}
@@ -102,8 +105,8 @@ private extension LoginVM {
 			title: LocalizationKit.login.loginButtonTitle,
 			isEnabled: !(email?.isEmpty ?? true || password?.isEmpty ?? true),
 			isLoading: isLoading,
-			action: { [unowned self] in
-				self.login()
+			action: { [weak self] in
+				self?.login()
 			}
 		)
 	}
@@ -117,9 +120,9 @@ private extension LoginVM {
 		UnderlinedTextField.Content(
 			text: email,
 			placeholder: LocalizationKit.login.emailPlaceholder,
-			textDidChange: { [unowned self] text in
-				self.email = text
-				self.setupContent()
+			textDidChange: { [weak self] text in
+				self?.email = text
+				self?.setupContent()
 			},
 			keyboardType: .emailAddress,
 			returnKeyType: .next
@@ -130,9 +133,9 @@ private extension LoginVM {
 		UnderlinedTextField.Content(
 			text: password,
 			placeholder: LocalizationKit.login.passwordPlaceholder,
-			textDidChange: { [unowned self] text in
-				self.password = text
-				self.setupContent()
+			textDidChange: { [weak self] text in
+				self?.password = text
+				self?.setupContent()
 			},
 			keyboardType: .default,
 			returnKeyType: .done,
@@ -141,7 +144,10 @@ private extension LoginVM {
 				normalIcon: StyleKit.image.password.hide,
 				selectedIcon: StyleKit.image.password.show,
 				isSelected: !isPasswordHidden,
-				action: { [unowned self] in
+				action: { [weak self] in
+					guard let self = self else {
+						return
+					}
 					self.isPasswordHidden = !self.isPasswordHidden
 					self.setupContent()
 				}

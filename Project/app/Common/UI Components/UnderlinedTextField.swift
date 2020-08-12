@@ -47,8 +47,8 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
         keyboardType = content.keyboardType
 		returnKeyType = content.returnKeyType
 		isSecureTextEntry = content.isSecured
-        replaceAction(for: .editingChanged) { [unowned self] in
-            content.textDidChange?(self.text ?? "")
+        replaceAction(for: .editingChanged) { [weak self] in
+            content.textDidChange?(self?.text ?? "")
         }
 
 		updateRightView(with: content.rightView)
@@ -91,16 +91,14 @@ private extension UnderlinedTextField {
 	// MARK: - Private methods
 
     func setupUI() {
+		// This line is needed in order to disable password autofill.
+		textContentType = .oneTimeCode
 		font = StyleKit.font.title3
 		textColor = StyleKit.color.darkGrayText
 		floatingLabelFont = StyleKit.font.caption1
 		floatingLabelTextColor = StyleKit.color.lightGrayText
 		tintColor = StyleKit.color.lightGrayText
 		attributedPlaceholder = NSAttributedString(string: "", attributes: [.foregroundColor: StyleKit.color.lightGrayText])
-        replaceAction(for: .editingDidEndOnExit) { [unowned self] in
-            self.resignFirstResponder()
-        }
-
         separator.backgroundColor = StyleKit.color.separator
         addSubview(separator)
         separator.snp.makeConstraints { make in

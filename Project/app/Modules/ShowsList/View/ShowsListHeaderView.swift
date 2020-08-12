@@ -31,7 +31,7 @@ final class ShowsListHeaderView: UIView {
 
 	func update(with content: Content) {
 		titleLabel.text = content.title
-		button.setImage(UIImage(named: content.iconName), for: .normal)
+		button.setImage(StyleKit.image.make(from: content.iconName), for: .normal)
 		button.replaceAction(for: .touchUpInside, content.action)
 	}
 }
