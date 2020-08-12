@@ -55,48 +55,6 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
     }
 }
 
-private extension UnderlinedTextField {
-
-	// MARK: - Private methods
-
-    func setupUI() {
-		font = StyleKit.font.title3
-		textColor = StyleKit.color.darkGrayText
-		floatingLabelFont = StyleKit.font.caption1
-		floatingLabelTextColor = StyleKit.color.lightGrayText
-		tintColor = StyleKit.color.lightGrayText
-		attributedPlaceholder = NSAttributedString(string: "", attributes: [.foregroundColor: StyleKit.color.lightGrayText])
-        returnKeyType = .done
-        replaceAction(for: .editingDidEndOnExit) { [unowned self] in
-            self.resignFirstResponder()
-        }
-
-        separator.backgroundColor = StyleKit.color.separator
-        addSubview(separator)
-        separator.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(StyleKit.metrics.separator)
-        }
-    }
-
-	func updateRightView(with content: RightViewContent?) {
-		if let content = content {
-			if rightViewButton == nil {
-				rightViewButton = UIButton(type: .custom)
-			}
-			rightViewMode = .always
-			rightView = rightViewButton
-			rightViewButton?.isSelected = content.isSelected
-			rightViewButton?.setImage(UIImage(named: content.isSelected ? content.selectedIcon : content.normalIcon), for: .normal)
-			rightViewButton?.replaceAction(for: .touchUpInside, content.action)
-		} else {
-			rightViewButton = nil
-			rightView = nil
-			rightViewMode = .never
-		}
-	}
-}
-
 // MARK: - Content
 
 extension UnderlinedTextField {
@@ -124,6 +82,47 @@ extension UnderlinedTextField {
 			self.returnKeyType = returnKeyType
 			self.isSecured = isSecured
 			self.rightView = rightView
+		}
+	}
+}
+
+private extension UnderlinedTextField {
+
+	// MARK: - Private methods
+
+    func setupUI() {
+		font = StyleKit.font.title3
+		textColor = StyleKit.color.darkGrayText
+		floatingLabelFont = StyleKit.font.caption1
+		floatingLabelTextColor = StyleKit.color.lightGrayText
+		tintColor = StyleKit.color.lightGrayText
+		attributedPlaceholder = NSAttributedString(string: "", attributes: [.foregroundColor: StyleKit.color.lightGrayText])
+        replaceAction(for: .editingDidEndOnExit) { [unowned self] in
+            self.resignFirstResponder()
+        }
+
+        separator.backgroundColor = StyleKit.color.separator
+        addSubview(separator)
+        separator.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(StyleKit.metrics.separator)
+        }
+    }
+
+	func updateRightView(with content: RightViewContent?) {
+		if let content = content {
+			if rightViewButton == nil {
+				rightViewButton = UIButton(type: .custom)
+			}
+			rightViewMode = .always
+			rightView = rightViewButton
+			rightViewButton?.isSelected = content.isSelected
+			rightViewButton?.setImage(StyleKit.image.make(from: content.isSelected ? content.selectedIcon : content.normalIcon), for: .normal)
+			rightViewButton?.replaceAction(for: .touchUpInside, content.action)
+		} else {
+			rightViewButton = nil
+			rightView = nil
+			rightViewMode = .never
 		}
 	}
 }

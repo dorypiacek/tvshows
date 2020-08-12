@@ -33,7 +33,7 @@
 		F431039324D954790044F4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F431039124D954790044F4E4 /* LaunchScreen.storyboard */; };
 		F455280F24D9C7EC00F93183 /* AlertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455280E24D9C7EC00F93183 /* AlertConfig.swift */; };
 		F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281024D9CCF600F93183 /* LocalizationKit.swift */; };
-		F455281424D9D8C300F93183 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281324D9D8C300F93183 /* RadioButton.swift */; };
+		F455281424D9D8C300F93183 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281324D9D8C300F93183 /* CheckboxButton.swift */; };
 		F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281524D9DAD400F93183 /* UIControl+Closure.swift */; };
 		F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281724D9DC0D00F93183 /* DeallocTracker.swift */; };
 		F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281924D9DEB700F93183 /* PrimaryButton.swift */; };
@@ -44,6 +44,7 @@
 		F47651E524DEB07100E2B73A /* LoginDataProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651E424DEB07100E2B73A /* LoginDataProviderType.swift */; };
 		F47651E824DEB21600E2B73A /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651E724DEB21600E2B73A /* AlertAction.swift */; };
 		F4B3040324DEC3540045277F /* ImageKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3040224DEC3540045277F /* ImageKit.swift */; };
+		F4EB453724E4378900C36CDB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB453624E4378900C36CDB /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +77,7 @@
 		F431039624D955300044F4E4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F455280E24D9C7EC00F93183 /* AlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfig.swift; sourceTree = "<group>"; };
 		F455281024D9CCF600F93183 /* LocalizationKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKit.swift; sourceTree = "<group>"; };
-		F455281324D9D8C300F93183 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		F455281324D9D8C300F93183 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		F455281524D9DAD400F93183 /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
 		F455281724D9DC0D00F93183 /* DeallocTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeallocTracker.swift; sourceTree = "<group>"; };
 		F455281924D9DEB700F93183 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		F47651E424DEB07100E2B73A /* LoginDataProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataProviderType.swift; sourceTree = "<group>"; };
 		F47651E724DEB21600E2B73A /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		F4B3040224DEC3540045277F /* ImageKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKit.swift; sourceTree = "<group>"; };
+		F4EB453624E4378900C36CDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F431038D24D954400044F4E4 /* AppDelegate.swift */,
+				F4EB453624E4378900C36CDB /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -302,7 +305,7 @@
 		F455281224D9D89F00F93183 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				F455281324D9D8C300F93183 /* RadioButton.swift */,
+				F455281324D9D8C300F93183 /* CheckboxButton.swift */,
 				F455281924D9DEB700F93183 /* PrimaryButton.swift */,
 				F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */,
 			);
@@ -484,10 +487,11 @@
 				F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */,
 				F47651E524DEB07100E2B73A /* LoginDataProviderType.swift in Sources */,
 				F455281624D9DAD400F93183 /* UIControl+Closure.swift in Sources */,
-				F455281424D9D8C300F93183 /* RadioButton.swift in Sources */,
+				F455281424D9D8C300F93183 /* CheckboxButton.swift in Sources */,
 				F42E67EF24D982C8003E49A6 /* Encodable+Dictionary.swift in Sources */,
 				F42E67F224D98353003E49A6 /* ColorKit.swift in Sources */,
 				F42E67EC24D975CA003E49A6 /* ApiDataProvider.swift in Sources */,
+				F4EB453724E4378900C36CDB /* SceneDelegate.swift in Sources */,
 				F42E67FA24D98D5F003E49A6 /* UIColor+Hex.swift in Sources */,
 				F47651E324DEB03A00E2B73A /* LoginVMType.swift in Sources */,
 				F42E680124D9A57F003E49A6 /* PersistentKey.swift in Sources */,

@@ -16,10 +16,10 @@ final class LoginVC: UIViewController {
 
 	private var vm: LoginVMType
 
-	private lazy var imageView = UIImageView(image: UIImage(named: vm.iconName))
+	private lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
 	private let emailTextField = UnderlinedTextField()
 	private let passwordTextField = UnderlinedTextField()
-	private let radioButton = RadioButton()
+	private let checkboxButton = CheckboxButton()
 	private let loginButton = PrimaryButton()
 
 	// MARK: - Initializers
@@ -44,6 +44,23 @@ final class LoginVC: UIViewController {
 		super.viewDidLoad()
 		bindObservers()
 	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		emailTextField.becomeFirstResponder()
+	}
+}
+
+extension LoginVC: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if textField == emailTextField {
+			passwordTextField.becomeFirstResponder()
+		} else if textField == passwordTextField {
+			textField.resignFirstResponder()
+			vm.login()
+		}
+		return true
+	}
 }
 
 private extension LoginVC {
@@ -63,12 +80,12 @@ private extension LoginVC {
 			}
 		}
 		vm.passwordTextFieldContent.dispatch()
-		vm.radioButtonContent.observe(owner: self) { [unowned self] content in
+		vm.checkboxButtonContent.observe(owner: self) { [unowned self] content in
 			if let content = content {
-				self.radioButton.update(with: content)
+				self.checkboxButton.update(with: content)
 			}
 		}
-		vm.radioButtonContent.dispatch()
+		vm.checkboxButtonContent.dispatch()
 		vm.loginButtonContent.observe(owner: self) { [unowned self] content in
 			if let content = content {
 				self.loginButton.update(with: content)
@@ -81,12 +98,12 @@ private extension LoginVC {
 		view.backgroundColor = .white
 		navigationController?.isNavigationBarHidden = true
 
-		[imageView, emailTextField, passwordTextField, radioButton, loginButton].forEach(view.addSubview)
+		[imageView, emailTextField, passwordTextField, checkboxButton, loginButton].forEach(view.addSubview)
 
 		setupImageView()
 		setupEmailTextField()
 		setupPasswordTextField()
-		setupRadioButton()
+		setupCheckboxButton()
 		setupLoginButton()
 	}
 
@@ -99,30 +116,27 @@ private extension LoginVC {
 	}
 
 	func setupEmailTextField() {
+		emailTextField.delegate = self
 		emailTextField.returnKeyType = .next
-		emailTextField.addAction(for: .editingDidEnd) { [unowned self] in
-			self.emailTextField.resignFirstResponder()
-			self.passwordTextField.becomeFirstResponder()
-		}
 		emailTextField.snp.makeConstraints { make in
 			make.top.equalTo(imageView.snp.bottom).offset(StyleKit.metrics.padding.large)
 			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
+			make.height.equalTo(StyleKit.metrics.textFieldHeight)
 		}
 	}
 
 	func setupPasswordTextField() {
+		passwordTextField.delegate = self
 		passwordTextField.returnKeyType = .done
-		passwordTextField.addAction(for: .editingDidEnd) { [unowned self] in
-			self.vm.login()
-		}
 		passwordTextField.snp.makeConstraints { make in
 			make.top.equalTo(emailTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
 			make.leading.trailing.equalTo(emailTextField)
+			make.height.equalTo(StyleKit.metrics.textFieldHeight)
 		}
 	}
 
-	func setupRadioButton() {
-		radioButton.snp.makeConstraints { make in
+	func setupCheckboxButton() {
+		checkboxButton.snp.makeConstraints { make in
 			make.top.equalTo(passwordTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
 			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
@@ -131,7 +145,7 @@ private extension LoginVC {
 
 	func setupLoginButton() {
 		loginButton.snp.makeConstraints { make in
-			make.top.equalTo(radioButton.snp.bottom).offset(StyleKit.metrics.padding.large)
+			make.top.equalTo(checkboxButton.snp.bottom).offset(StyleKit.metrics.padding.large)
 			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
 		}

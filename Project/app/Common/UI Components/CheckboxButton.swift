@@ -1,5 +1,5 @@
 //
-//  RadioButton.swift
+//  CheckboxButton.swift
 //  TV Shows
 //
 //  Created by Dorota Piačeková on 04/08/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class RadioButton: UIButton {
+final class CheckboxButton: UIButton {
 
 	// MARK: - Innitializers
 
@@ -33,7 +33,7 @@ final class RadioButton: UIButton {
 
 // MARK: - Content
 
-extension RadioButton {
+extension CheckboxButton {
 	struct Content {
 		let title: String
 		let isSelected: Bool
@@ -41,13 +41,13 @@ extension RadioButton {
 	}
 }
 
-private extension RadioButton {
+private extension CheckboxButton {
 
 	// MARK: - Private
 
 	func setupUI() {
-		setImage(UIImage(named: StyleKit.image.checkbox.empty), for: .normal)
-		setImage(UIImage(named: StyleKit.image.checkbox.filled), for: .selected)
+		setImage(StyleKit.image.make(from: StyleKit.image.checkbox.empty), for: .normal)
+		setImage(StyleKit.image.make(from: StyleKit.image.checkbox.filled), for: .selected)
 		setTitleColor(StyleKit.color.defaultText, for: .normal)
 		titleLabel?.font = StyleKit.font.callout
 		titleLabel?.textAlignment = .left

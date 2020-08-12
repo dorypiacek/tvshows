@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ImageKit {
 	let password = Password()
@@ -33,5 +34,11 @@ extension ImageKit {
 
 	struct Logo {
 		let login = "img-login-logo"
+	}
+}
+
+extension ImageKit {
+	func make(from name: String, with renderingMode: UIImage.RenderingMode = .alwaysOriginal) -> UIImage? {
+		UIImage(named: name)?.withRenderingMode(renderingMode)
 	}
 }
