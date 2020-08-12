@@ -13,7 +13,7 @@ import ETBinding
 
 final class LoginVM: LoginVMType {
 	var iconName: String = StyleKit.image.logo.login
-	var radioButtonContent: LiveOptionalData<RadioButton.Content> = LiveOptionalData(data: nil)
+	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
 	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
 	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
 	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
@@ -90,7 +90,7 @@ private extension LoginVM {
 	}
 
 	func setupButtons() {
-		radioButtonContent.data = RadioButton.Content(
+		checkboxButtonContent.data = CheckboxButton.Content(
 			title: LocalizationKit.login.radioButtonTitle,
 			isSelected: rememberCredentials,
 			action: { [unowned self] in
@@ -109,7 +109,12 @@ private extension LoginVM {
 	}
 
 	func setupTextFields() {
-		emailTextFieldContent.data = UnderlinedTextField.Content(
+		emailTextFieldContent.data = makeEmailTextField()
+		passwordTextFieldContent.data = makePasswordTextField()
+	}
+
+	func makeEmailTextField() -> UnderlinedTextField.Content {
+		UnderlinedTextField.Content(
 			text: email,
 			placeholder: LocalizationKit.login.emailPlaceholder,
 			textDidChange: { [unowned self] text in
@@ -119,7 +124,10 @@ private extension LoginVM {
 			keyboardType: .emailAddress,
 			returnKeyType: .next
 		)
-		passwordTextFieldContent.data = UnderlinedTextField.Content(
+	}
+
+	func makePasswordTextField() -> UnderlinedTextField.Content {
+		UnderlinedTextField.Content(
 			text: password,
 			placeholder: LocalizationKit.login.passwordPlaceholder,
 			textDidChange: { [unowned self] text in
