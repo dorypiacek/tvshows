@@ -54,6 +54,8 @@ extension EpisodeCell {
 
 private extension EpisodeCell {
 	func setupUI() {
+		isUserInteractionEnabled = false
+
 		addSubview(episodeLabel)
 		addSubview(titleLabel)
 

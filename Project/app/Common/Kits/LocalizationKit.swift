@@ -20,6 +20,10 @@ extension LocalizationKit {
 		let ok = "Ok"
 		let errorTitle = "Error"
 		let errorMessage = "Something went wrong. Please try again later."
+		let noInternetErrorTitle = "No internet"
+		let noInternetErrorMessage = "Please connect to network and try again."
+		let loading = "Loading..."
+		let tryAgain = "Try again"
 	}
 
 	struct Login {

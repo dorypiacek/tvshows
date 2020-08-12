@@ -14,5 +14,6 @@ import ETBinding
 protocol ShowsListVMType {
 	var tableContent: LiveData<[ShowsListCell.Content]> { get }
 	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> { get }
+	var placeholderContent: LiveOptionalData<PlaceholderView.Content> { get }
 	func load()
 }

@@ -13,7 +13,7 @@ import ETBinding
 
 final class LoginVM: LoginVMType {
 	var iconName: String = StyleKit.image.logo.login
-	var radioButtonContent: LiveOptionalData<RadioButton.Content> = LiveOptionalData(data: nil)
+	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
 	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
 	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
 	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
@@ -90,10 +90,13 @@ private extension LoginVM {
 	}
 
 	func setupButtons() {
-		radioButtonContent.data = RadioButton.Content(
+		checkboxButtonContent.data = CheckboxButton.Content(
 			title: LocalizationKit.login.radioButtonTitle,
 			isSelected: rememberCredentials,
-			action: { [unowned self] in
+			action: { [weak self] in
+				guard let self = self else {
+					return
+				}
 				self.rememberCredentials = !self.rememberCredentials
 				self.setupContent()
 			}
@@ -102,29 +105,37 @@ private extension LoginVM {
 			title: LocalizationKit.login.loginButtonTitle,
 			isEnabled: !(email?.isEmpty ?? true || password?.isEmpty ?? true),
 			isLoading: isLoading,
-			action: { [unowned self] in
-				self.login()
+			action: { [weak self] in
+				self?.login()
 			}
 		)
 	}
 
 	func setupTextFields() {
-		emailTextFieldContent.data = UnderlinedTextField.Content(
+		emailTextFieldContent.data = makeEmailTextField()
+		passwordTextFieldContent.data = makePasswordTextField()
+	}
+
+	func makeEmailTextField() -> UnderlinedTextField.Content {
+		UnderlinedTextField.Content(
 			text: email,
 			placeholder: LocalizationKit.login.emailPlaceholder,
-			textDidChange: { [unowned self] text in
-				self.email = text
-				self.setupContent()
+			textDidChange: { [weak self] text in
+				self?.email = text
+				self?.setupContent()
 			},
 			keyboardType: .emailAddress,
 			returnKeyType: .next
 		)
-		passwordTextFieldContent.data = UnderlinedTextField.Content(
+	}
+
+	func makePasswordTextField() -> UnderlinedTextField.Content {
+		UnderlinedTextField.Content(
 			text: password,
 			placeholder: LocalizationKit.login.passwordPlaceholder,
-			textDidChange: { [unowned self] text in
-				self.password = text
-				self.setupContent()
+			textDidChange: { [weak self] text in
+				self?.password = text
+				self?.setupContent()
 			},
 			keyboardType: .default,
 			returnKeyType: .done,
@@ -133,7 +144,10 @@ private extension LoginVM {
 				normalIcon: StyleKit.image.password.hide,
 				selectedIcon: StyleKit.image.password.show,
 				isSelected: !isPasswordHidden,
-				action: { [unowned self] in
+				action: { [weak self] in
+					guard let self = self else {
+						return
+					}
 					self.isPasswordHidden = !self.isPasswordHidden
 					self.setupContent()
 				}

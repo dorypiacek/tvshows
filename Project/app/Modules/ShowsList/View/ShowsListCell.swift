@@ -37,7 +37,7 @@ final class ShowsListCell: UITableViewCell {
 
 	func update(with content: Content) {
 		titleLabel.text = content.title
-		thumbnailImageView.kf.setImage(with: content.imageURL)
+		thumbnailImageView.kf.setImage(with: content.imageURL, options: [.transition(.fade(0.5))])
 	}
 }
 
@@ -74,6 +74,7 @@ private extension ShowsListCell {
 	}
 
 	func setupImage() {
+		thumbnailImageView.backgroundColor = StyleKit.color.separator
 		thumbnailImageView.contentMode = .scaleAspectFill
 		thumbnailImageView.layer.cornerRadius = StyleKit.metrics.smallCornerRadius
 		thumbnailImageView.clipsToBounds = true

@@ -13,7 +13,7 @@ import ETBinding
 
 protocol LoginVMType {
 	var iconName: String { get }
-	var radioButtonContent: LiveOptionalData<RadioButton.Content> { get }
+	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> { get }
 	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> { get }
 	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> { get }
 	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> { get }

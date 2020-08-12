@@ -12,20 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
 	private var loginCoord: LoginCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		let navigationController = UINavigationController()
-		loginCoord = LoginCoordinator(presenter: navigationController)
-
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.backgroundColor = .white
-		window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-			self?.loginCoord?.start()
+		if #available(iOS 13.0, *) {
+			return true
+		} else {
+			let navigationController = UINavigationController()
+			loginCoord = LoginCoordinator(presenter: navigationController)
+			window = UIWindow(frame: UIScreen.main.bounds)
+			window?.backgroundColor = .white
+			window?.rootViewController = navigationController
+			window?.makeKeyAndVisible()
+			loginCoord?.start()
+			return true
 		}
-        return true
     }
 }

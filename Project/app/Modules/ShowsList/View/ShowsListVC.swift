@@ -19,6 +19,8 @@ final class ShowsListVC: UIViewController {
 	private let tableView = UITableView()
 	private let headerView = ShowsListHeaderView()
 
+	private var placeholderView: PlaceholderView?
+
 	private let reuseIdentifier = "ShowsListCell"
 	private var content: [ShowsListCell.Content] = [] {
 		didSet {
@@ -46,7 +48,7 @@ final class ShowsListVC: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		bind()
+		bindObservers()
 		vm.load()
 	}
 }
@@ -65,7 +67,7 @@ private extension ShowsListVC {
 		setupTableView()
 	}
 
-	func bind() {
+	func bindObservers() {
 		vm.headerContent.observe(owner: self) { [weak self] content in
 			if let content = content {
 				self?.headerView.update(with: content)
@@ -76,6 +78,19 @@ private extension ShowsListVC {
 			self?.content = content
 		}
 		vm.tableContent.dispatch()
+		vm.placeholderContent.observe(owner: self) { [weak self] content in
+			if let content = content {
+				if let placeholderView = self?.placeholderView {
+					placeholderView.update(with: content)
+				} else {
+					self?.showPlaceholder(with: content)
+				}
+			} else {
+				self?.hidePlaceholder()
+				self?.placeholderView = nil
+			}
+		}
+		vm.placeholderContent.dispatch()
 	}
 
 	func setupHeader() {
@@ -94,6 +109,29 @@ private extension ShowsListVC {
 			make.top.equalTo(headerView.snp.bottom)
 			make.leading.trailing.bottom.equalToSuperview()
 		}
+	}
+
+	func showPlaceholder(with content: PlaceholderView.Content) {
+		placeholderView = PlaceholderView()
+		placeholderView?.update(with: content)
+
+		guard let placeholderView = placeholderView else {
+			return
+		}
+
+		UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+			self.view.insertSubview(placeholderView, aboveSubview: self.tableView)
+			placeholderView.snp.makeConstraints { make in
+				make.top.equalTo(self.headerView.snp.bottom)
+				make.leading.trailing.bottom.equalToSuperview()
+			}
+		}, completion: nil)
+	}
+
+	func hidePlaceholder() {
+		UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+			self.placeholderView?.removeFromSuperview()
+		}, completion: nil)
 	}
 }
 
