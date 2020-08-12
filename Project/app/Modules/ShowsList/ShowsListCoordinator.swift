@@ -10,17 +10,29 @@ import Foundation
 import UIKit
 
 final class ShowsListCoordinator: BaseCoordinator {
+
+	private var detailCoord: ShowDetailCoordinator?
+
 	override func start() {
 		let dataProvider = ApiDataProvider() as ShowsListDataProviderType
 		let vm = ShowsListVM(dataProvider: dataProvider)
-		vm.onSelect = { _ in
-			// TODO: Implement show detail.
+		vm.onSelect = { [weak self] id in
+			self?.showDetail(with: id)
 		}
 		vm.onLogout = { [weak self] in
 			self?.stop()
 		}
 		let vc = ShowsListVC(vm: vm)
-		vc.modalPresentationStyle = .fullScreen
-		presenter.presentedViewController?.present(vc, animated: true, completion: nil)
+		presenter.pushViewController(vc, animated: true)
+	}
+}
+
+private extension ShowsListCoordinator {
+	func showDetail(with id: TVShowId) {
+		detailCoord = ShowDetailCoordinator(presenter: presenter, showId: id)
+		detailCoord?.onDidStop = { [weak self] in
+			self?.detailCoord = nil
+		}
+		detailCoord?.start()
 	}
 }

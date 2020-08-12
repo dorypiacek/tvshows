@@ -12,6 +12,7 @@ struct LocalizationKit {
 	static let login = Login()
 	static let general = General()
 	static let showsList = ShowsList()
+	static let showDetail = ShowDetail()
 }
 
 extension LocalizationKit {
@@ -30,5 +31,9 @@ extension LocalizationKit {
 
 	struct ShowsList {
 		let title = "Shows"
+	}
+
+	struct ShowDetail {
+		let title = "Episodes"
 	}
 }

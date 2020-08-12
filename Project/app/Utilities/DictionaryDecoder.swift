@@ -13,6 +13,14 @@ class DictionaryDecoder {
 
     func decode<T>(_ type: T.Type, from dictionary: [String: Any]) throws -> T where T: Decodable {
         let data = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-        return try decoder.decode(type, from: data)
+
+		// TODO: Remove.
+		do {
+			let x = try decoder.decode(type, from: data)
+		} catch let error {
+			print(error)
+		}
+
+		return try decoder.decode(type, from: data)
     }
 }

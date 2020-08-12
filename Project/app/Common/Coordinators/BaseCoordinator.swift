@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BaseCoordinator: Coordinator {
+class BaseCoordinator: CoordinatorType {
 	var presenter: UINavigationController
 	var onDidStop: (() -> Void)?
 
@@ -17,13 +17,13 @@ class BaseCoordinator: Coordinator {
 		self.presenter = presenter
 	}
 
-	// Used for overrides
-	func start() {}
+	func start() {
+		fatalError("Function start() must be implemented!")
+	}
 
 	func stop() {
-		presenter.presentedViewController?.dismiss(animated: true, completion: { [weak self] in
-			self?.onDidStop?()
-		})
+		presenter.popViewController(animated: true)
+		onDidStop?()
 	}
 
 	func showAlert(with config: AlertConfig) {

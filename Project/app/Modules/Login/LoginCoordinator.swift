@@ -23,8 +23,7 @@ final class LoginCoordinator: BaseCoordinator {
 			self?.showAlert(with: config)
 		}
 		let vc = LoginVC(vm: vm)
-		vc.modalPresentationStyle = .fullScreen
-		presenter.present(vc, animated: false, completion: nil)
+		presenter.pushViewController(vc, animated: false)
 	}
 }
 

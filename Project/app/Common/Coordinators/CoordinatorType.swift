@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  CoordinatorType.swift
 //  TV Shows
 //
 //  Created by Dorota Piačeková on 04/08/2020.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Protocol used for coordinator pattern implementation
-protocol Coordinator {
+protocol CoordinatorType {
 	var presenter: UINavigationController { get set }
 	var onDidStop: (() -> Void)? { get set }
 	func start()

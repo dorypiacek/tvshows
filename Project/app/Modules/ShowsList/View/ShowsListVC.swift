@@ -97,7 +97,6 @@ private extension ShowsListVC {
 	}
 }
 
-
 extension ShowsListVC: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		vm.tableContent.data[indexPath.row].didSelect()

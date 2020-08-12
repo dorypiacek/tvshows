@@ -16,7 +16,7 @@ final class ShowsListVM: ShowsListVMType {
 	var tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
 	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
 
-	var onSelect: ((TVShow) -> Void)?
+	var onSelect: ((TVShowId) -> Void)?
 	var onLogout: (() -> Void)?
 
 	// MARK: Private variables
@@ -41,7 +41,7 @@ final class ShowsListVM: ShowsListVMType {
 				self.setupContent()
 		}
 		.catch { error in
-			// TODO: Implement error & empty placeholder
+			print(error.localizedDescription)
 		}
 	}
 }
@@ -73,7 +73,7 @@ private extension ShowsListVM {
 				imageURL: url,
 				title: show.title,
 				didSelect: { [unowned self] in
-					self.onSelect?(show)
+					self.onSelect?(show.id)
 				}
 			)
 		}

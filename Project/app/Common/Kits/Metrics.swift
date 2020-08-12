@@ -18,6 +18,7 @@ struct Metrics {
 	let buttonHeight: CGFloat = 48
 	let tableRowHeight: CGFloat = 56
 	let textFieldHeight: CGFloat = 64
+	let gradientHeight: CGFloat = 80
 	static let thumbnailSize: CGSize = CGSize(width: 64, height: 90)
 
 	struct Padding {
