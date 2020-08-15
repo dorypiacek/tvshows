@@ -11,9 +11,6 @@ import PromiseKit
 
 extension ApiDataProvider: LoginDataProviderType {
 	func login(with credentials: UserCredentials) -> Promise<Data<LoginResponse>> {
-		return .init { resolver in
-			resolver.fulfill(Data(data: LoginResponse(token: "hfhfhffh")))
-		}
-		//post(to: .login, body: credentials)
+		post(to: .login, body: credentials)
 	}
 }
