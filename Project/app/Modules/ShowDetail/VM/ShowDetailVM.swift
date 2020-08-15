@@ -14,82 +14,111 @@ typealias ShowDetailTableSection = (header: EpisodeTableHeaderView.Content, rows
 
 final class ShowDetailVM: ShowDetailVMType {
 
-	// MARK: - Public variables
+	// MARK: - Public properties
 
+	/// Episode title
 	var title: LiveOptionalData<String> = LiveOptionalData(data: nil)
+	/// Episode description
 	var description: LiveOptionalData<String> = LiveOptionalData(data: nil)
+	/// Header content, contains episode image URL and back navigation action, shows loading if needed
 	var headerContent: LiveOptionalData<ShowDetailHeaderView.Content> = LiveOptionalData(data: nil)
+	/// Table view content
 	var tableContent: LiveData<[ShowDetailTableSection]> = LiveData(data: [])
-	var isLoading: LiveData<Bool> = LiveData(data: false)
+	/// Defines when to show/hide refresh control
+	var isEpisodesLoading: LiveData<Bool> = LiveData(data: false)
 
 	var onBackTapped: (() -> Void)?
 
-	// MARK: Private variables
+	// MARK: - Private properties
 
 	private let dataProvider: ShowDetailDataProviderType
-	private let showId: TVShowId
+	private let showPreview: TVShow
 
-	private var show: TVShowDetail?
+	private var showDetail: TVShowDetail?
 	private var episodes: [TVShowEpisode] = []
+
+	private var isShowLoading: Bool = false {
+		didSet {
+			setupContent()
+		}
+	}
 
 	// MARK: - Initializer
 
-	init(dataProvider: ShowDetailDataProviderType, showId: TVShowId) {
+	init(dataProvider: ShowDetailDataProviderType, showPreview: TVShow) {
 		self.dataProvider = dataProvider
-		self.showId = showId
+		self.showPreview = showPreview
+		setupContent()
 		load()
 	}
 
-	// MARK: Public methods
+	// MARK: - Public methods
 
+	/// Loads TV Show detail, then episodes and updates content accordingly.
 	func load() {
-		isLoading.data = true
+		isShowLoading = true
 		dataProvider
-			.showDetail(with: showId)
-			.then { show -> Promise<Data<[TVShowEpisode]>> in
-				self.show = show.data
-				self.setupContent()
-				return self.dataProvider.episodes(for: self.showId)
-			}
-			.done { episodes in
-				self.episodes = episodes.data
-				self.setupContent()
+			.showDetail(with: showPreview.id)
+			.done { show in
+				self.showDetail = show.data
+				self.isShowLoading = false
 			}
 			.ensure {
-				self.isLoading.data = false
+				self.loadEpisodes()
 			}
 			.catch { error in
+				self.isShowLoading = false
 				print(error.localizedDescription)
 			}
 	}
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 private extension ShowDetailVM {
+	func loadEpisodes() {
+		dataProvider
+			.episodes(for: showDetail?.id ?? showPreview.id)
+			.done { episodes in
+				self.episodes = episodes.data
+				self.setupTableContent()
+			}
+			.ensure {
+				self.isEpisodesLoading.data = false
+			}
+			.catch { error in
+				self.setupTableContent(error: true)
+				print(error.localizedDescription)
+			}
+	}
+
+	// MARK: - Content
+
 	func setupContent() {
-		title.data = show?.title
-		description.data = show?.description
+		title.data = showDetail?.title ?? showPreview.title
+		description.data = showDetail?.description
 
 		setupHeaderContent()
 		setupTableContent()
 	}
 
 	func setupHeaderContent() {
-		guard let show = show else {
-			return
-		}
-		let url = try? Endpoint.image(show.imageUrl).url.asURL()
+		let url = try? Endpoint.image(showDetail?.imageUrl ?? "").url.asURL()
 		headerContent.data = ShowDetailHeaderView.Content(
 			imageUrl: url,
+			isLoading: isShowLoading,
 			backAction: { [weak self] in
 				self?.onBackTapped?()
 			}
 		)
 	}
 
-	func setupTableContent() {
-		let header = EpisodeTableHeaderView.Content(title: LocalizationKit.showDetail.title, count: String(episodes.count))
+	func setupTableContent(error: Bool = false) {
+		let header = EpisodeTableHeaderView.Content(
+			title: LocalizationKit.showDetail.title,
+			count: error ? LocalizationKit.showDetail.episodesLoadingFailed : String(episodes.count),
+			hasError: error
+		)
 		let rows = episodes.map { episode in
 			EpisodeCell.Content(
 				episode: "S\(episode.season) Ep\(episode.episodeNumber)",

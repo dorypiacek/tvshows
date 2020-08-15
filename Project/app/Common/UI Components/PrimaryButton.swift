@@ -12,7 +12,7 @@ import SnapKit
 
 final class PrimaryButton: UIButton {
 
-	// MARK: - Variables
+	// MARK: - properties
 	// MARK: - Private
 
 	private var activityIndicator: UIActivityIndicatorView?

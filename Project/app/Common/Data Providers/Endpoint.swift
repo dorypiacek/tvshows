@@ -17,8 +17,7 @@ enum Endpoint {
 	case episodes(String)
 	case image(String)
 
-	// MARK: - Variables
-	// MARK: - Public
+	// MARK: - Public properties
 
 	/// Combination of base URL and path used for API calls
 	var url: URLConvertible {
@@ -41,10 +40,9 @@ enum Endpoint {
 	}
 }
 
+// MARK: - Private properties
+
 private extension Endpoint {
-
-	// MARK: - Private
-
     var path: String {
         switch self {
         case .login: return "api/users/sessions"

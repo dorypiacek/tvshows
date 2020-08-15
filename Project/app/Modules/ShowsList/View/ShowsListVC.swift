@@ -12,7 +12,7 @@ import ETBinding
 
 final class ShowsListVC: UIViewController {
 
-	// MARK: Private variables
+	// MARK: Private properties
 
 	private var vm: ShowsListVMType
 

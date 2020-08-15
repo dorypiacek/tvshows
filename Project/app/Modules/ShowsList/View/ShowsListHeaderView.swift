@@ -11,7 +11,7 @@ import UIKit
 
 final class ShowsListHeaderView: UIView {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private let titleLabel = UILabel()
 	private let button = UIButton()

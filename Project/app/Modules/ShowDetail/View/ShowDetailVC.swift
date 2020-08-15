@@ -12,7 +12,7 @@ import UIKit
 
 final class ShowDetailVC: UIViewController {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private var vm: ShowDetailVMType
 
@@ -83,9 +83,11 @@ private extension ShowDetailVC {
 		vm.tableContent.observe(owner: self) { [weak self] content in
 			self?.tableContent = content
 		}
-		vm.isLoading.observe(owner: self) { [weak self] loading in
+		vm.tableContent.dispatch()
+		vm.isEpisodesLoading.observe(owner: self) { [weak self] loading in
 			loading ? self?.tableView.refreshControl?.beginRefreshing() : self?.tableView.refreshControl?.endRefreshing()
 		}
+		vm.isEpisodesLoading.dispatch()
 	}
 
 	func setupUI() {
@@ -134,6 +136,7 @@ private extension ShowDetailVC {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none
+		tableView.backgroundColor = .white
 		tableView.register(EpisodeCell.self, forCellReuseIdentifier: cellReuseIdentifier)
 
 		let refresh = UIRefreshControl()

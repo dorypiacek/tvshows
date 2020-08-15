@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 
 final class ShowDetailCoordinator: BaseCoordinator {
-	var showId: TVShowId
+	var show: TVShow
 
-	init(presenter: UINavigationController, showId: TVShowId) {
-		self.showId = showId
+	init(presenter: UINavigationController, show: TVShow) {
+		self.show = show
 		super.init(presenter: presenter)
 	}
 
 	override func start() {
 		let dataProvider = ApiDataProvider() as ShowDetailDataProviderType
-		let vm = ShowDetailVM(dataProvider: dataProvider, showId: showId)
+		let vm = ShowDetailVM(dataProvider: dataProvider, showPreview: show)
 		vm.onBackTapped = { [weak self] in
 			self?.stop()
 		}

@@ -13,19 +13,19 @@ final class ShowsListVM: ShowsListVMType {
 	enum State {
 		case loading
 		case loaded
-		case error(Error?)
+		case error
 	}
 
-	// MARK: Public variables
+	// MARK: Public properties
 
 	var tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
 	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
 	var placeholderContent: LiveOptionalData<PlaceholderView.Content> = LiveOptionalData(data: nil)
 
-	var onSelect: ((TVShowId) -> Void)?
+	var onSelect: ((TVShow) -> Void)?
 	var onLogout: (() -> Void)?
 
-	// MARK: Private variables
+	// MARK: Private properties
 
 	private var dataProvider: ShowsListDataProviderType
 	private var shows: [TVShow] = []
@@ -53,7 +53,7 @@ final class ShowsListVM: ShowsListVMType {
 				self.state = .loaded
 			}
 			.catch { error in
-				self.state = .error(error)
+				self.state = .error
 			}
 	}
 }
@@ -86,7 +86,7 @@ private extension ShowsListVM {
 				imageURL: url,
 				title: show.title,
 				didSelect: { [weak self] in
-					self?.onSelect?(show.id)
+					self?.onSelect?(show)
 				}
 			)
 		}
@@ -99,14 +99,10 @@ private extension ShowsListVM {
 				title: LocalizationKit.general.loading,
 				isLoading: true
 			)
-		case .error(let error):
-			var isNoInternetError = false
-			if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
-				isNoInternetError = true
-			}
+		case .error:
 			placeholderContent.data = PlaceholderView.Content(
-				title: isNoInternetError ? LocalizationKit.general.noInternetErrorTitle : LocalizationKit.general.errorTitle,
-				subtitle: isNoInternetError ? LocalizationKit.general.noInternetErrorMessage : LocalizationKit.general.errorMessage,
+				title: LocalizationKit.general.errorTitle,
+				subtitle: LocalizationKit.general.errorMessage,
 				isLoading: false,
 				button: ButtonContent(
 					title: LocalizationKit.general.tryAgain,

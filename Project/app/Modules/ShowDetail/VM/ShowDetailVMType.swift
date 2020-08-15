@@ -16,6 +16,6 @@ protocol ShowDetailVMType {
 	var description: LiveOptionalData<String> { get }
 	var headerContent: LiveOptionalData<ShowDetailHeaderView.Content> { get }
 	var tableContent: LiveData<[ShowDetailTableSection]> { get }
-	var isLoading: LiveData<Bool> { get }
+	var isEpisodesLoading: LiveData<Bool> { get }
 	func load()
 }

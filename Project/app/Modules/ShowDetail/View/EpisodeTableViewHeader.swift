@@ -11,7 +11,7 @@ import UIKit
 
 final class EpisodeTableHeaderView: UITableViewHeaderFooterView {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private let titleLabel = UILabel()
 	private let countLabel = UILabel()
@@ -32,6 +32,7 @@ final class EpisodeTableHeaderView: UITableViewHeaderFooterView {
 	func update(with content: Content) {
 		titleLabel.text = content.title
 		countLabel.text = content.count
+		countLabel.textColor = content.hasError ? StyleKit.color.brand : StyleKit.color.lightGrayText
 	}
 }
 
@@ -41,6 +42,7 @@ extension EpisodeTableHeaderView {
 	struct Content {
 		let title: String
 		let count: String
+		let hasError: Bool
 	}
 }
 
@@ -55,6 +57,7 @@ private extension EpisodeTableHeaderView {
 
 		titleLabel.textColor = StyleKit.color.darkGrayText
 		titleLabel.font = StyleKit.font.title3
+		titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 		titleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(StyleKit.metrics.padding.large)
 			make.centerY.equalToSuperview()
@@ -62,6 +65,7 @@ private extension EpisodeTableHeaderView {
 
 		countLabel.textColor = StyleKit.color.lightGrayText
 		countLabel.font = StyleKit.font.title3
+		countLabel.adjustsFontSizeToFitWidth = true
 		countLabel.snp.makeConstraints { make in
 			make.leading.equalTo(titleLabel.snp.trailing).offset(StyleKit.metrics.padding.medium)
 			make.trailing.lessThanOrEqualToSuperview().inset(StyleKit.metrics.padding.large)

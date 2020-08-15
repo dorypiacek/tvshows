@@ -12,7 +12,7 @@ import Kingfisher
 
 final class ShowsListCell: UITableViewCell {
 
-	// MARK: Private variables
+	// MARK: Private properties
 
 	private let titleLabel = UILabel()
 	private let thumbnailImageView = UIImageView()

@@ -13,7 +13,7 @@ import JVFloatLabeledTextField
 
 final class UnderlinedTextField: JVFloatLabeledTextField {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
     private let separator = UIView()
 	private var rightViewButton: UIButton?
@@ -48,7 +48,7 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
 		returnKeyType = content.returnKeyType
 		isSecureTextEntry = content.isSecured
         replaceAction(for: .editingChanged) { [weak self] in
-            content.textDidChange?(self?.text ?? "")
+			content.textDidChange?(self?.text)
         }
 
 		updateRightView(with: content.rightView)
@@ -68,13 +68,13 @@ extension UnderlinedTextField {
 	struct Content {
 		let text: String?
 		var placeholder: String?
-		let textDidChange: ((String) -> Void)?
+		let textDidChange: ((String?) -> Void)?
 		let keyboardType: UIKeyboardType
 		let returnKeyType: UIReturnKeyType
 		let isSecured: Bool
 		let rightView: RightViewContent?
 
-		init(text: String?, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, rightView: RightViewContent? = nil) {
+		init(text: String?, placeholder: String?, textDidChange: ((String?) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, rightView: RightViewContent? = nil) {
 			self.text = text
 			self.placeholder = placeholder
 			self.textDidChange = textDidChange

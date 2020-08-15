@@ -14,6 +14,7 @@ struct ImageKit {
 	let checkbox = Checkbox()
 	let navigation = Navigation()
 	let logo = Logo()
+	let placeholder = Placeholder()
 }
 
 extension ImageKit {
@@ -34,6 +35,10 @@ extension ImageKit {
 
 	struct Logo {
 		let login = "img-login-logo"
+	}
+
+	struct Placeholder {
+		let noImage = "ic-placeholder"
 	}
 }
 

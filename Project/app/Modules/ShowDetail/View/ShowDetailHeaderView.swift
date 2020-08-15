@@ -12,12 +12,14 @@ import Kingfisher
 
 final class ShowDetailHeaderView: UIView {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private let imageView = UIImageView()
 	private let backButton = UIButton(type: .system)
 	private let gradientView = UIView()
 	private let gradientLayer = CAGradientLayer()
+
+	private var activityIndicator: UIActivityIndicatorView?
 
 	// MARK: - Initializers
 
@@ -40,13 +42,18 @@ final class ShowDetailHeaderView: UIView {
 	// MARK: - Public methods
 
 	func update(with content: Content) {
-		DispatchQueue.main.async { [weak self] in
-			self?.imageView.kf.indicatorType = .activity
-			self?.imageView.kf.setImage(
-				with: content.imageUrl,
-				options: [.transition(.fade(1))]
-			)
-		}
+		imageView.kf.setImage(
+			with: content.imageUrl,
+			options: [KingfisherOptionsInfoItem.transition(.fade(0.5))],
+			completionHandler: { [weak self] result in
+				if case .failure = result {
+					self?.imageView.contentMode = .center
+					self?.imageView.tintColor = StyleKit.color.lightGrayText
+					self?.imageView.image = StyleKit.image.make(from: StyleKit.image.placeholder.noImage, with: .alwaysTemplate)
+				}
+			}
+		)
+		content.isLoading ? showLoading() : hideLoading()
 		backButton.replaceAction(for: .touchUpInside, content.backAction)
 	}
 }
@@ -56,6 +63,7 @@ final class ShowDetailHeaderView: UIView {
 extension ShowDetailHeaderView {
 	struct Content {
 		let imageUrl: URL?
+		let isLoading: Bool
 		let backAction: () -> Void
 	}
 }
@@ -108,5 +116,25 @@ private extension ShowDetailHeaderView {
 	func updateGradient() {
 		let y = imageView.bounds.height - StyleKit.metrics.gradientHeight
 		gradientLayer.frame = CGRect(x: 0, y: y, width: imageView.bounds.width, height: StyleKit.metrics.gradientHeight)
+	}
+
+	func showLoading() {
+		activityIndicator = UIActivityIndicatorView(style: .gray)
+
+		guard let activityIndicator = activityIndicator else {
+			return
+		}
+		imageView.addSubview(activityIndicator)
+		activityIndicator.snp.makeConstraints { make in
+			make.trailing.equalToSuperview().inset(StyleKit.metrics.padding.large)
+			make.centerY.equalTo(backButton)
+		}
+		activityIndicator.startAnimating()
+	}
+
+	func hideLoading() {
+		activityIndicator?.stopAnimating()
+		activityIndicator?.removeFromSuperview()
+		activityIndicator = nil
 	}
 }

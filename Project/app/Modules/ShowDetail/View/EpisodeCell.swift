@@ -11,7 +11,7 @@ import UIKit
 
 final class EpisodeCell: UITableViewCell {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private let episodeLabel = UILabel()
 	private let titleLabel = UILabel()

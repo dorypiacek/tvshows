@@ -11,8 +11,7 @@ import UIKit
 import ETBinding
 
 final class LoginVC: UIViewController {
-	// MARK: - Variables
-	// MARK: - Private
+	// MARK: - Private properties
 
 	private var vm: LoginVMType
 

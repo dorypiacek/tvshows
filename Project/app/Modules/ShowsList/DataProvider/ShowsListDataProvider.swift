@@ -11,6 +11,9 @@ import PromiseKit
 
 extension ApiDataProvider: ShowsListDataProviderType {
 	func loadShows() -> Promise<Data<[TVShow]>> {
-		get(from: .list)
+		.init { resolver in
+			resolver.fulfill(Data(data: [TVShow(id: "1", title: "Test Show", imageUrl: "", likesCount: 1)]))
+		}
+		//get(from: .list)
 	}
 }

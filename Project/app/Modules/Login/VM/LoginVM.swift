@@ -21,7 +21,7 @@ final class LoginVM: LoginVMType {
 	var onDidLogin: (() -> Void)?
 	var onShowAlert: ((AlertConfig) -> Void)?
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private var dataProvider: LoginDataProviderType
 
