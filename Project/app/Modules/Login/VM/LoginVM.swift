@@ -15,13 +15,20 @@ final class LoginVM: LoginVMType {
 
 	// MARK: - Public variables
 
+	/// Name of icon to show
 	var iconName: String = StyleKit.image.logo.login
+	/// Checkbox button content
 	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
+	/// Login button content
 	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
+	/// Email text field content
 	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+	/// Password text field content
 	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
 
+	/// Action called after succesful login
 	var onDidLogin: (() -> Void)?
+	/// Shows alert with given config
 	var onShowAlert: ((AlertConfig) -> Void)?
 
 	// MARK: - Private variables
