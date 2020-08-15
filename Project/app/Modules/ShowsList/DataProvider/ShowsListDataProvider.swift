@@ -10,6 +10,7 @@ import Foundation
 import PromiseKit
 
 extension ApiDataProvider: ShowsListDataProviderType {
+	/// Gets list of TV Shows
 	func loadShows() -> Promise<Data<[TVShow]>> {
 		get(from: .list)
 	}
