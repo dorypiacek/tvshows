@@ -11,6 +11,7 @@ import ETBinding
 
 final class ShowsListVM: ShowsListVMType {
 	enum State {
+		case initial
 		case loading
 		case loaded
 		case error
@@ -18,21 +19,34 @@ final class ShowsListVM: ShowsListVMType {
 
 	// MARK: Public properties
 
+	/// Table view content
 	var tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
+	/// Header content with a title and logout action
 	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
+	/// Placeholder content to be shown while loading and on error
 	var placeholderContent: LiveOptionalData<PlaceholderView.Content> = LiveOptionalData(data: nil)
 
+	/// Selected TV Show action
 	var onSelect: ((TVShow) -> Void)?
+	/// Logout action
 	var onLogout: (() -> Void)?
 
 	// MARK: Private properties
 
 	private var dataProvider: ShowsListDataProviderType
 	private var shows: [TVShow] = []
-	private var state: State = .loading {
+	private var state: State = .initial {
 		didSet {
 			updatePlaceholder()
 		}
+	}
+
+	/// Shows loading placeholder only if loading takes more than 0.6 second.
+	private lazy var loadingTimer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { [weak self] timer in
+		if case .initial = self?.state {
+			self?.state = .loading
+		}
+		timer.invalidate()
 	}
 
 	// MARK: Initializer
@@ -40,6 +54,7 @@ final class ShowsListVM: ShowsListVMType {
 	init(dataProvider: ShowsListDataProviderType) {
 		self.dataProvider = dataProvider
 		setupContent()
+		loadingTimer.fire()
 	}
 
 	// MARK: - Public methods
@@ -111,7 +126,7 @@ private extension ShowsListVM {
 					}
 				)
 			)
-		case .loaded:
+		case .initial, .loaded:
 			placeholderContent.data = nil
 		}
 	}
