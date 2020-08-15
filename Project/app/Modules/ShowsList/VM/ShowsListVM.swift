@@ -68,9 +68,7 @@ final class ShowsListVM: ShowsListVMType {
 				self.state = .loaded
 			}
 			.catch { error in
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-					self.state = .error(error)
-				}
+				self.state = .error(error)
 			}
 	}
 }
