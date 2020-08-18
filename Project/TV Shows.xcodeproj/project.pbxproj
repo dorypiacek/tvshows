@@ -44,6 +44,7 @@
 		F47651E524DEB07100E2B73A /* LoginDataProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651E424DEB07100E2B73A /* LoginDataProviderType.swift */; };
 		F47651E824DEB21600E2B73A /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651E724DEB21600E2B73A /* AlertAction.swift */; };
 		F4B3040324DEC3540045277F /* ImageKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3040224DEC3540045277F /* ImageKit.swift */; };
+		F4CEF7A624E9BD1D002BDE9C /* LoginVC+KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CEF7A524E9BD1D002BDE9C /* LoginVC+KeyboardObserver.swift */; };
 		F4EB453724E4378900C36CDB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB453624E4378900C36CDB /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		F47651E424DEB07100E2B73A /* LoginDataProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataProviderType.swift; sourceTree = "<group>"; };
 		F47651E724DEB21600E2B73A /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		F4B3040224DEC3540045277F /* ImageKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKit.swift; sourceTree = "<group>"; };
+		F4CEF7A524E9BD1D002BDE9C /* LoginVC+KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginVC+KeyboardObserver.swift"; sourceTree = "<group>"; };
 		F4EB453624E4378900C36CDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				F42E680A24D9B5EA003E49A6 /* LoginVC.swift */,
+				F4CEF7A524E9BD1D002BDE9C /* LoginVC+KeyboardObserver.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				F42E67FD24D9A016003E49A6 /* Coordinator.swift in Sources */,
 				F42E67F624D98374003E49A6 /* StyleKit.swift in Sources */,
 				F42E680924D9B5D7003E49A6 /* LoginCoordinator.swift in Sources */,
+				F4CEF7A624E9BD1D002BDE9C /* LoginVC+KeyboardObserver.swift in Sources */,
 				F42E67F424D9835D003E49A6 /* FontKit.swift in Sources */,
 				F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */,
 				F42E681B24D9B8BB003E49A6 /* Data.swift in Sources */,

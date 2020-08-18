@@ -58,7 +58,8 @@ final class LoginVM: LoginVMType {
 	// MARK: - Public methods
 
 	func login() {
-		guard let email = email, let password = password else {
+		guard let email = email, !email.isEmpty, let password = password, !password.isEmpty else {
+			updateTextfields()
 			return
 		}
 		let credentials = UserCredentials(email: email, password: password)
@@ -82,7 +83,7 @@ final class LoginVM: LoginVMType {
 
 private extension LoginVM {
 
-	// MARK: - Content setup
+	// MARK: - Private methods
 
 	func readCredentials() {
 		if let credentials = PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).value {
@@ -121,7 +122,16 @@ private extension LoginVM {
 		passwordTextFieldContent.data = makePasswordTextField()
 	}
 
-	func makeEmailTextField() -> UnderlinedTextField.Content {
+	func updateTextfields() {
+		if email?.isEmpty ?? true {
+			emailTextFieldContent.data = makeEmailTextField(error: true)
+		}
+		if password?.isEmpty ?? true {
+			passwordTextFieldContent.data = makePasswordTextField(error: true)
+		}
+	}
+
+	func makeEmailTextField(error: Bool = false) -> UnderlinedTextField.Content {
 		UnderlinedTextField.Content(
 			text: email,
 			placeholder: LocalizationKit.login.emailPlaceholder,
@@ -130,11 +140,12 @@ private extension LoginVM {
 				self.setupContent()
 			},
 			keyboardType: .emailAddress,
-			returnKeyType: .next
+			returnKeyType: .next,
+			hasError: error
 		)
 	}
 
-	func makePasswordTextField() -> UnderlinedTextField.Content {
+	func makePasswordTextField(error: Bool = false) -> UnderlinedTextField.Content {
 		UnderlinedTextField.Content(
 			text: password,
 			placeholder: LocalizationKit.login.passwordPlaceholder,
@@ -145,6 +156,7 @@ private extension LoginVM {
 			keyboardType: .default,
 			returnKeyType: .done,
 			isSecured: isPasswordHidden,
+			hasError: error,
 			rightView: UnderlinedTextField.RightViewContent(
 				normalIcon: StyleKit.image.password.hide,
 				selectedIcon: StyleKit.image.password.show,

@@ -16,7 +16,9 @@ final class LoginVC: UIViewController {
 
 	private var vm: LoginVMType
 
-	private lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
+	let stackView = UIStackView()
+
+	lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
 	private let emailTextField = UnderlinedTextField()
 	private let passwordTextField = UnderlinedTextField()
 	private let checkboxButton = CheckboxButton()
@@ -45,9 +47,19 @@ final class LoginVC: UIViewController {
 		bindObservers()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		registerKeyboardNotifications()
+	}
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		emailTextField.becomeFirstResponder()
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		unregisterKeyboardNotifications()
 	}
 }
 
@@ -98,8 +110,10 @@ private extension LoginVC {
 		view.backgroundColor = .white
 		navigationController?.isNavigationBarHidden = true
 
-		[imageView, emailTextField, passwordTextField, checkboxButton, loginButton].forEach(view.addSubview)
+		view.addSubview(stackView)
+		[imageView, emailTextField, passwordTextField, checkboxButton, loginButton].forEach(stackView.addArrangedSubview)
 
+		setupStackView()
 		setupImageView()
 		setupEmailTextField()
 		setupPasswordTextField()
@@ -107,46 +121,52 @@ private extension LoginVC {
 		setupLoginButton()
 	}
 
+	func setupStackView() {
+		stackView.axis = .vertical
+		stackView.distribution = .equalSpacing
+		stackView.alignment = .center
+		stackView.spacing = StyleKit.metrics.padding.medium
+		stackView.snp.makeConstraints { make in
+			make.top.equalTo(view.safeAreaLayoutGuide).offset(2 * StyleKit.metrics.padding.large)
+			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
+		}
+	}
+
 	func setupImageView() {
 		imageView.contentMode = .scaleAspectFit
-		imageView.snp.makeConstraints { make in
-			make.top.equalTo(view.safeAreaLayoutGuide).offset(2 * StyleKit.metrics.padding.large)
-			make.centerX.equalToSuperview()
-		}
+		imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
 	}
 
 	func setupEmailTextField() {
 		emailTextField.delegate = self
 		emailTextField.returnKeyType = .next
+		emailTextField.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 		emailTextField.snp.makeConstraints { make in
-			make.top.equalTo(imageView.snp.bottom).offset(StyleKit.metrics.padding.large)
-			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
-			make.height.equalTo(StyleKit.metrics.textFieldHeight)
+			make.width.equalToSuperview()
+			make.height.equalTo(StyleKit.metrics.textFieldHeight).priority(.required)
 		}
 	}
 
 	func setupPasswordTextField() {
 		passwordTextField.delegate = self
 		passwordTextField.returnKeyType = .done
+		passwordTextField.setContentCompressionResistancePriority(.required, for: .vertical)
 		passwordTextField.snp.makeConstraints { make in
-			make.top.equalTo(emailTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
-			make.leading.trailing.equalTo(emailTextField)
-			make.height.equalTo(StyleKit.metrics.textFieldHeight)
+			make.width.equalToSuperview()
+			make.height.equalTo(StyleKit.metrics.textFieldHeight).priority(.required)
 		}
 	}
 
 	func setupCheckboxButton() {
 		checkboxButton.snp.makeConstraints { make in
-			make.top.equalTo(passwordTextField.snp.bottom).offset(StyleKit.metrics.padding.medium)
-			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
+			make.width.equalToSuperview()
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
 		}
 	}
 
 	func setupLoginButton() {
 		loginButton.snp.makeConstraints { make in
-			make.top.equalTo(checkboxButton.snp.bottom).offset(StyleKit.metrics.padding.large)
-			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.medium)
+			make.width.equalToSuperview()
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
 		}
 	}
