@@ -8,19 +8,23 @@ I decided to use MVVM+C pattern to separate business and navigation logic from v
 
 ### Coordinator 
 
-Takes care of all the navigation, including alert presentation. Usually I use a library for Coordinator pattern implementation, but for this project I decided to make my own. 
+ - takes care of all the navigation, including alert presentation
+ - usually I use a library for Coordinator pattern implementation, but for this project I decided to make my own
 
 ### View Model 
 
-Handles all the business logic, including API calls. It's defined by a protocol containing variables and functions visible for the View Controller. It uses observable LiveData to allow real-time view updates. 
+ - handles all the business logic, including API calls 
+ - defined by a protocol containing variables and functions visible for the View Controller
+ - uses observable LiveData to allow real-time view updates
 
 ### Data Provider
 
-Common API calls implementation is defined in ApiDataProvider. Data Provider for each module is defined by an extension of ApiDataProvider conforming to specified protocol
+- generic API calls implementation is defined in ApiDataProvider
+- Data Provider for each module is defined by an extension of ApiDataProvider conforming to specified protocol
 
 ### View Controller
 
-Is just a dummy view that presents and updates content given by View Model 
+- just a dummy view that presents and updates content given by View Model 
 
 ## Dependencies 
 
@@ -56,4 +60,9 @@ Observable values and events
 
 ### ETPersistentValue
 
-Easy and convenient UserDefaults wrapper
+Easy and convenient UserDefaults 
+
+## Notes
+
+- Despite recommendation, I decided not to use CodableAlamofire for response deserialization, because I found a lightweight solution that doesn't require another dependency. 
+- I had testability in mind while developing, but unfortunately didn't have enough time to write tests 🙁

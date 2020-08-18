@@ -27,7 +27,7 @@ final class LoginVM: LoginVMType {
 
 	// MARK: - Private properties
 
-	private var dataProvider: LoginDataProviderType
+	private let dataProvider: LoginDataProviderType
 
 	private var email: String?
 	private var password: String?

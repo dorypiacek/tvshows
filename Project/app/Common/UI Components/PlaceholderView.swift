@@ -13,7 +13,7 @@ typealias ButtonContent = (title: String, action: () -> Void)
 
 final class PlaceholderView: UIView {
 
-	// MARK: - Private variables
+	// MARK: - Private properties
 
 	private let stackView = UIStackView()
 	private let titleLabel = UILabel()
@@ -62,6 +62,8 @@ final class PlaceholderView: UIView {
 	}
 }
 
+// MARK: - Content
+
 extension PlaceholderView {
 	struct Content {
 		let title: String
@@ -78,29 +80,17 @@ extension PlaceholderView {
 	}
 }
 
+// MARK: - Private methods
+
 private extension PlaceholderView {
 	func setupUI() {
+		backgroundColor = .white
+
 		addSubview(stackView)
 		stackView.addArrangedSubview(titleLabel)
 
-		setupBlur()
 		setupStackView()
 		setupTitle()
-	}
-
-	func setupBlur() {
-		if !UIAccessibility.isReduceTransparencyEnabled {
-			backgroundColor = .clear
-
-			let blurEffect = UIBlurEffect(style: .light)
-			let blurEffectView = UIVisualEffectView(effect: blurEffect)
-			insertSubview(blurEffectView, at: 0)
-			blurEffectView.snp.makeConstraints { make in
-				make.edges.equalToSuperview()
-			}
-		} else {
-			backgroundColor = .white
-		}
 	}
 
 	func setupStackView() {

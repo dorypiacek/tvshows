@@ -19,12 +19,9 @@ final class ShowsListVM: ShowsListVMType {
 
 	// MARK: Public variables
 
-	/// Table view content
-	var tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
-	/// Header content with a title and logout action
-	var headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
-	/// Placeholder content to be shown while loading and on error
-	var placeholderContent: LiveOptionalData<PlaceholderView.Content> = LiveOptionalData(data: nil)
+	let tableContent: LiveData<[ShowsListCell.Content]> = LiveData(data: [])
+	let headerContent: LiveOptionalData<ShowsListHeaderView.Content> = LiveOptionalData(data: nil)
+	let placeholderContent: LiveOptionalData<PlaceholderView.Content> = LiveOptionalData(data: nil)
 
 	/// Selected TV Show action
 	var onSelect: ((TVShow) -> Void)?
@@ -33,7 +30,7 @@ final class ShowsListVM: ShowsListVMType {
 
 	// MARK: Private variables
 
-	private var dataProvider: ShowsListDataProviderType
+	private let dataProvider: ShowsListDataProviderType
 	private var shows: [TVShow] = []
 	private var state: State = .initial {
 		didSet {
@@ -68,6 +65,7 @@ final class ShowsListVM: ShowsListVMType {
 				self.state = .loaded
 			}
 			.catch { error in
+				print(error)
 				self.state = .error(error)
 			}
 	}
@@ -86,7 +84,7 @@ private extension ShowsListVM {
 	func setupHeader() {
 		headerContent.data = ShowsListHeaderView.Content(
 			title: LocalizationKit.showsList.title,
-			iconName: "ic-logout",
+			iconName: StyleKit.image.navigation.logout,
 			action: { [weak self] in
 				self?.onLogout?()
 			}

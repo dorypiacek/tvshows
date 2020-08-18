@@ -13,7 +13,7 @@ import ETBinding
 final class LoginVC: UIViewController {
 	// MARK: - Private properties
 
-	private var vm: LoginVMType
+	private let vm: LoginVMType
 
 	private let stackView = UIStackView()
 	private lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
