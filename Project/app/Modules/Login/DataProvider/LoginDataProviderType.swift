@@ -10,5 +10,6 @@ import Foundation
 import PromiseKit
 
 protocol LoginDataProviderType {
+	/// Logs in with given credentials, return data with access token
 	func login(with credentials: UserCredentials) -> Promise<Data<LoginResponse>>
 }

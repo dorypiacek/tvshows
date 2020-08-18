@@ -10,6 +10,10 @@ import Foundation
 import PromiseKit
 
 protocol ShowDetailDataProviderType {
+	/// Gets TV Show detail for given ID
+	/// - Parameter id: TV show ID
 	func showDetail(with id: TVShowId) -> Promise<Data<TVShowDetail>>
+	/// Gets TV Show episodes for given ID
+	/// - Parameter id: TV show ID
 	func episodes(for id: TVShowId) -> Promise<Data<[TVShowEpisode]>>
 }

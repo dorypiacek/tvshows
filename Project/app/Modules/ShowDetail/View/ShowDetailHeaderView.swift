@@ -45,11 +45,15 @@ final class ShowDetailHeaderView: UIView {
 		imageView.kf.setImage(
 			with: content.imageUrl,
 			options: [KingfisherOptionsInfoItem.transition(.fade(0.5))],
-			completionHandler: { [weak self] result in
-				if case .failure = result {
-					self?.imageView.contentMode = .center
-					self?.imageView.tintColor = StyleKit.color.lightGrayText
-					self?.imageView.image = StyleKit.image.make(from: StyleKit.image.placeholder.noImage, with: .alwaysTemplate)
+			completionHandler: { [weak imageView] result in
+				switch result {
+				case .success(let result):
+					imageView?.image = result.image
+					imageView?.contentMode = .scaleAspectFill
+				case .failure:
+					imageView?.contentMode = .center
+					imageView?.tintColor = StyleKit.color.lightGrayText
+					imageView?.image = StyleKit.image.make(from: StyleKit.image.placeholder.noImage, with: .alwaysTemplate)
 				}
 			}
 		)

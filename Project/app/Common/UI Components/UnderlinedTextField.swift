@@ -77,7 +77,7 @@ extension UnderlinedTextField {
 		let hasError: Bool
 		let rightView: RightViewContent?
 
-		init(text: String?, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, hasError: Bool = false, rightView: RightViewContent? = nil) {
+		init(text: String?, placeholder: String?, textDidChange: ((String?) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, hasError: Bool = false, rightView: RightViewContent? = nil) {
 			self.text = text
 			self.placeholder = placeholder
 			self.textDidChange = textDidChange

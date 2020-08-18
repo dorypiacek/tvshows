@@ -14,7 +14,7 @@ final class ShowDetailVC: UIViewController {
 
 	// MARK: - Private properties
 
-	private var vm: ShowDetailVMType
+	private let vm: ShowDetailVMType
 
 	private let headerView = ShowDetailHeaderView()
 	private let titleLabel = UILabel()
@@ -53,10 +53,6 @@ final class ShowDetailVC: UIViewController {
 		bindObservers()
 	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-	}
-
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		.lightContent
 	}
@@ -66,17 +62,17 @@ final class ShowDetailVC: UIViewController {
 
 private extension ShowDetailVC {
 	func bindObservers() {
-		vm.title.observe(owner: self) { [weak self] title in
-			self?.titleLabel.text = title
+		vm.title.observe(owner: self) { [weak titleLabel] title in
+			titleLabel?.text = title
 		}
 		vm.title.dispatch()
-		vm.description.observe(owner: self) { [weak self] description in
-			self?.descriptionLabel.text = description
+		vm.description.observe(owner: self) { [weak descriptionLabel] description in
+			descriptionLabel?.text = description
 		}
 		vm.description.dispatch()
-		vm.headerContent.observe(owner: self) { [weak self] content in
+		vm.headerContent.observe(owner: self) { [weak headerView] content in
 			if let content = content {
-				self?.headerView.update(with: content)
+				headerView?.update(with: content)
 			}
 		}
 		vm.headerContent.dispatch()
@@ -84,8 +80,8 @@ private extension ShowDetailVC {
 			self?.tableContent = content
 		}
 		vm.tableContent.dispatch()
-		vm.isEpisodesLoading.observe(owner: self) { [weak self] loading in
-			loading ? self?.tableView.refreshControl?.beginRefreshing() : self?.tableView.refreshControl?.endRefreshing()
+		vm.isEpisodesLoading.observe(owner: self) { [weak tableView] loading in
+			loading ? tableView?.refreshControl?.beginRefreshing() : tableView?.refreshControl?.endRefreshing()
 		}
 		vm.isEpisodesLoading.dispatch()
 	}
@@ -94,10 +90,7 @@ private extension ShowDetailVC {
 		view.backgroundColor = .white
 		navigationController?.isNavigationBarHidden = true
 
-		view.addSubview(headerView)
-		view.addSubview(titleLabel)
-		view.addSubview(descriptionLabel)
-		view.addSubview(tableView)
+		[headerView, titleLabel, descriptionLabel, tableView].forEach { view.addSubview($0) }
 
 		setupHeader()
 		setupTitle()

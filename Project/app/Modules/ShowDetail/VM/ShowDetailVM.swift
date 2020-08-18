@@ -16,17 +16,13 @@ final class ShowDetailVM: ShowDetailVMType {
 
 	// MARK: - Public properties
 
-	/// Episode title
-	var title: LiveOptionalData<String> = LiveOptionalData(data: nil)
-	/// Episode description
-	var description: LiveOptionalData<String> = LiveOptionalData(data: nil)
-	/// Header content, contains episode image URL and back navigation action, shows loading if needed
-	var headerContent: LiveOptionalData<ShowDetailHeaderView.Content> = LiveOptionalData(data: nil)
-	/// Table view content
-	var tableContent: LiveData<[ShowDetailTableSection]> = LiveData(data: [])
-	/// Defines when to show/hide refresh control
-	var isEpisodesLoading: LiveData<Bool> = LiveData(data: false)
+	let title: LiveOptionalData<String> = LiveOptionalData(data: nil)
+	let description: LiveOptionalData<String> = LiveOptionalData(data: nil)
+	let headerContent: LiveOptionalData<ShowDetailHeaderView.Content> = LiveOptionalData(data: nil)
+	let tableContent: LiveData<[ShowDetailTableSection]> = LiveData(data: [])
+	let isEpisodesLoading: LiveData<Bool> = LiveData(data: false)
 
+	/// Navigates back to TV Shows list
 	var onBackTapped: (() -> Void)?
 
 	// MARK: - Private properties
@@ -54,7 +50,6 @@ final class ShowDetailVM: ShowDetailVMType {
 
 	// MARK: - Public methods
 
-	/// Loads TV Show detail, then episodes and updates content accordingly.
 	func load() {
 		isShowLoading = true
 		dataProvider

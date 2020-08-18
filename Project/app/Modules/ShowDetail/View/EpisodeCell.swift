@@ -16,6 +16,8 @@ final class EpisodeCell: UITableViewCell {
 	private let episodeLabel = UILabel()
 	private let titleLabel = UILabel()
 
+	// MARK: - View lifecycle
+
 	override func layoutSubviews() {
 		super.layoutSubviews()
 

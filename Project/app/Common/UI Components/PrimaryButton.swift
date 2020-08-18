@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 final class PrimaryButton: UIButton {
-	
+
 	// MARK: - Private properties
 
 	private var activityIndicator: UIActivityIndicatorView?

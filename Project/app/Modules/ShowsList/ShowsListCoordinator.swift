@@ -17,7 +17,7 @@ final class ShowsListCoordinator: BaseCoordinator {
 		let dataProvider = ApiDataProvider() as ShowsListDataProviderType
 		let vm = ShowsListVM(dataProvider: dataProvider)
 		vm.onSelect = { [weak self] show in
-			self?.showDetail(with: show)
+			self?.showDetail(of: show)
 		}
 		vm.onLogout = { [weak self] in
 			self?.stop()
@@ -28,7 +28,7 @@ final class ShowsListCoordinator: BaseCoordinator {
 }
 
 private extension ShowsListCoordinator {
-	func showDetail(with show: TVShow) {
+	func showDetail(of show: TVShow) {
 		detailCoord = ShowDetailCoordinator(presenter: presenter, show: show)
 		detailCoord?.onDidStop = { [weak self] in
 			self?.detailCoord = nil

@@ -68,9 +68,9 @@ private extension ShowsListVC {
 	}
 
 	func bindObservers() {
-		vm.headerContent.observe(owner: self) { [weak self] content in
+		vm.headerContent.observe(owner: self) { [weak headerView] content in
 			if let content = content {
-				self?.headerView.update(with: content)
+				headerView?.update(with: content)
 			}
 		}
 		vm.headerContent.dispatch()
