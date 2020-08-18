@@ -10,7 +10,7 @@ I decided to use MVVM+C pattern to separate business and navigation logic from v
 
  - takes care of all the navigation, including alert presentation
  - I usually use a library for Coordinator pattern implementation, but for this project I decided to make my own.
-​
+ 
 ### View Model 
 
  - handles all the business logic, including API calls 
