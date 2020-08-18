@@ -84,27 +84,13 @@ extension PlaceholderView {
 
 private extension PlaceholderView {
 	func setupUI() {
+		backgroundColor = .white
+
 		addSubview(stackView)
 		stackView.addArrangedSubview(titleLabel)
 
-		setupBlur()
 		setupStackView()
 		setupTitle()
-	}
-
-	func setupBlur() {
-		if !UIAccessibility.isReduceTransparencyEnabled {
-			backgroundColor = .clear
-
-			let blurEffect = UIBlurEffect(style: .light)
-			let blurEffectView = UIVisualEffectView(effect: blurEffect)
-			insertSubview(blurEffectView, at: 0)
-			blurEffectView.snp.makeConstraints { make in
-				make.edges.equalToSuperview()
-			}
-		} else {
-			backgroundColor = .white
-		}
 	}
 
 	func setupStackView() {

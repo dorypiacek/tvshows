@@ -47,7 +47,7 @@
 		F455281824D9DC0D00F93183 /* DeallocTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281724D9DC0D00F93183 /* DeallocTracker.swift */; };
 		F455281A24D9DEB700F93183 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281924D9DEB700F93183 /* PrimaryButton.swift */; };
 		F455281C24D9E4D300F93183 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */; };
-		F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */; };
+		F47651C724DBEFE400E2B73A /* JSONDecoder+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651C624DBEFE400E2B73A /* JSONDecoder+Dictionary.swift */; };
 		F47651CC24DC0D2F00E2B73A /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */; };
 		F47651D124DC1D1200E2B73A /* ShowsListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D024DC1D1200E2B73A /* ShowsListCoordinator.swift */; };
 		F47651D624DC1DC900E2B73A /* ShowsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47651D524DC1DC900E2B73A /* ShowsListVC.swift */; };
@@ -112,7 +112,7 @@
 		F455281724D9DC0D00F93183 /* DeallocTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeallocTracker.swift; sourceTree = "<group>"; };
 		F455281924D9DEB700F93183 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F455281B24D9E4D300F93183 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
-		F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
+		F47651C624DBEFE400E2B73A /* JSONDecoder+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Dictionary.swift"; sourceTree = "<group>"; };
 		F47651CB24DC0D2F00E2B73A /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		F47651D024DC1D1200E2B73A /* ShowsListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListCoordinator.swift; sourceTree = "<group>"; };
 		F47651D524DC1DC900E2B73A /* ShowsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsListVC.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 			children = (
 				F47651E624DEB20700E2B73A /* Alert */,
 				F42E67EE24D982C8003E49A6 /* Encodable+Dictionary.swift */,
-				F47651C624DBEFE400E2B73A /* DictionaryDecoder.swift */,
+				F47651C624DBEFE400E2B73A /* JSONDecoder+Dictionary.swift */,
 				F42E67F924D98D5F003E49A6 /* UIColor+Hex.swift */,
 				F455281524D9DAD400F93183 /* UIControl+Closure.swift */,
 				F455281724D9DC0D00F93183 /* DeallocTracker.swift */,
@@ -615,9 +615,9 @@
 				F438B53624DED207009ABBE3 /* ShowDetailVM.swift in Sources */,
 				F438B53C24DED33E009ABBE3 /* TVShowDetail.swift in Sources */,
 				F42E67EA24D96C60003E49A6 /* Endpoint.swift in Sources */,
-				F47651C724DBEFE400E2B73A /* DictionaryDecoder.swift in Sources */,
 				F438B53824DED271009ABBE3 /* ShowDetailDataProviderType.swift in Sources */,
 				F438B54224DEE9D1009ABBE3 /* EpisodeCell.swift in Sources */,
+				F47651C724DBEFE400E2B73A /* JSONDecoder+Dictionary.swift in Sources */,
 				F455281124D9CCF600F93183 /* LocalizationKit.swift in Sources */,
 				F42E681724D9B7AA003E49A6 /* UserCredentials.swift in Sources */,
 				F438B52D24DED0A9009ABBE3 /* ShowDetailCoordinator.swift in Sources */,

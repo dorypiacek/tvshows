@@ -12,25 +12,28 @@ import ETPersistentValue
 import ETBinding
 
 final class LoginVM: LoginVMType {
-	var iconName: String = StyleKit.image.logo.login
-	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
-	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
-	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
-	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+	// MARK: - Public properties
 
+	let iconName: String = StyleKit.image.logo.login
+	let checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
+	let loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
+	let emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+	let passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+
+	/// Action called after succesful login
 	var onDidLogin: (() -> Void)?
+	/// Shows alert with given config
 	var onShowAlert: ((AlertConfig) -> Void)?
 
 	// MARK: - Private properties
 
-	private var dataProvider: LoginDataProviderType
-
-	private var rememberCredentials: Bool = false
+	private let dataProvider: LoginDataProviderType
 
 	private var email: String?
 	private var password: String?
 
 	private var isPasswordHidden: Bool = true
+	private var rememberCredentials: Bool = false
 	private var isLoading: Bool = false {
 		didSet {
 			setupContent()
@@ -58,7 +61,8 @@ final class LoginVM: LoginVMType {
 	// MARK: - Public methods
 
 	func login() {
-		guard let email = email, let password = password else {
+		guard let email = email, !email.isEmpty, let password = password, !password.isEmpty else {
+			updateTextfields()
 			return
 		}
 		let credentials = UserCredentials(email: email, password: password)
@@ -69,6 +73,7 @@ final class LoginVM: LoginVMType {
 			.done { data in
 				PersistentString(key: PersistentKey.accessToken, value: data.data.token).save()
 				self.rememberCredentials ? PersistentCodable(key: PersistentKey.userCredentials, value: credentials).save() : PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).remove()
+				self.isPasswordHidden = true
 				self.onDidLogin?()
 		}
 		.ensure {
@@ -82,7 +87,7 @@ final class LoginVM: LoginVMType {
 
 private extension LoginVM {
 
-	// MARK: - Content setup
+	// MARK: - Private methods
 
 	func setupContent() {
 		setupButtons()
@@ -116,7 +121,16 @@ private extension LoginVM {
 		passwordTextFieldContent.data = makePasswordTextField()
 	}
 
-	func makeEmailTextField() -> UnderlinedTextField.Content {
+	func updateTextfields() {
+		if email?.isEmpty ?? true {
+			emailTextFieldContent.data = makeEmailTextField(error: true)
+		}
+		if password?.isEmpty ?? true {
+			passwordTextFieldContent.data = makePasswordTextField(error: true)
+		}
+	}
+
+	func makeEmailTextField(error: Bool = false) -> UnderlinedTextField.Content {
 		UnderlinedTextField.Content(
 			text: email,
 			placeholder: LocalizationKit.login.emailPlaceholder,
@@ -125,11 +139,12 @@ private extension LoginVM {
 				self?.setupContent()
 			},
 			keyboardType: .emailAddress,
-			returnKeyType: .next
+			returnKeyType: .next,
+			hasError: error
 		)
 	}
 
-	func makePasswordTextField() -> UnderlinedTextField.Content {
+	func makePasswordTextField(error: Bool = false) -> UnderlinedTextField.Content {
 		UnderlinedTextField.Content(
 			text: password,
 			placeholder: LocalizationKit.login.passwordPlaceholder,
@@ -140,6 +155,7 @@ private extension LoginVM {
 			keyboardType: .default,
 			returnKeyType: .done,
 			isSecured: isPasswordHidden,
+			hasError: error,
 			rightView: UnderlinedTextField.RightViewContent(
 				normalIcon: StyleKit.image.password.hide,
 				selectedIcon: StyleKit.image.password.show,

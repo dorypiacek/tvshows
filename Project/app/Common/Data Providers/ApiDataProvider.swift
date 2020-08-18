@@ -17,10 +17,9 @@ final class ApiDataProvider {
 	// MARK: - Public
 
 	/**
-	Generic function which makes an API call to specified endpoint.
+	Generic function which makes a GET API call to specified endpoint.
 
 	- Parameter endpoint: The endpoint the call is being sent to.
-	- Parameter body: Optional body of the request. Should be left `nil` for HTTP method `get`.
 	
 	- Returns: A Promise which is either fulfilled with an object of specified type `<ResultType>` or rejected with an error.
 	*/
@@ -33,7 +32,7 @@ final class ApiDataProvider {
 			AF.request(url, method: method, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 				switch response.result {
 				case .success(let data):
-					let decoder = DictionaryDecoder()
+					let decoder = JSONDecoder()
 					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
 						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))
 					}
@@ -45,6 +44,14 @@ final class ApiDataProvider {
 		}
     }
 
+	/**
+	Generic function which makes a POST API call to specified endpoint.
+
+	- Parameter endpoint: The endpoint the call is being sent to.
+	- Parameter body: Optional body of the request.
+
+	- Returns: A Promise which is either fulfilled with an object of specified type `<ResultType>` or rejected with an error.
+	*/
 	func post<ResultType: Decodable, BodyType: Encodable>(to endpoint: Endpoint, body: BodyType) -> Promise<ResultType> {
 		Promise { resolver in
 			let method = endpoint.method
@@ -55,7 +62,7 @@ final class ApiDataProvider {
 			AF.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 				switch response.result {
 				case .success(let data):
-					let decoder = DictionaryDecoder()
+					let decoder = JSONDecoder()
 					guard let data = data as? [String: Any], let decodedData = try? decoder.decode(ResultType.self, from: data) else {
 						return resolver.reject(AFError.responseValidationFailed(reason: .dataFileNil))
 					}

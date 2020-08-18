@@ -14,7 +14,7 @@ final class ShowsListVC: UIViewController {
 
 	// MARK: Private properties
 
-	private var vm: ShowsListVMType
+	private let vm: ShowsListVMType
 
 	private let tableView = UITableView()
 	private let headerView = ShowsListHeaderView()
@@ -122,14 +122,13 @@ private extension ShowsListVC {
 		UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
 			self.view.insertSubview(placeholderView, aboveSubview: self.tableView)
 			placeholderView.snp.makeConstraints { make in
-				make.top.equalTo(self.headerView.snp.bottom)
-				make.leading.trailing.bottom.equalToSuperview()
+				make.edges.equalTo(self.tableView)
 			}
 		}, completion: nil)
 	}
 
 	func hidePlaceholder() {
-		UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+		UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {
 			self.placeholderView?.removeFromSuperview()
 		}, completion: nil)
 	}
