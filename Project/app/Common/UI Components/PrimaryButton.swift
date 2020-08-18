@@ -12,8 +12,7 @@ import SnapKit
 
 final class PrimaryButton: UIButton {
 
-	// MARK: - Variables
-	// MARK: - Private
+	// MARK: - Private properties
 
 	private var activityIndicator: UIActivityIndicatorView?
 
@@ -27,6 +26,8 @@ final class PrimaryButton: UIButton {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
+	// MARK: - Public methods
 
 	func update(with content: Content) {
 		setTitle(content.isLoading ? "" : content.title, for: .normal)
@@ -48,7 +49,7 @@ extension PrimaryButton {
 	}
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 private extension PrimaryButton {
 	func setupUI() {

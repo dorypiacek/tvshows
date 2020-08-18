@@ -15,16 +15,11 @@ final class LoginVM: LoginVMType {
 
 	// MARK: - Public variables
 
-	/// Name of icon to show
-	var iconName: String = StyleKit.image.logo.login
-	/// Checkbox button content
-	var checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
-	/// Login button content
-	var loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
-	/// Email text field content
-	var emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
-	/// Password text field content
-	var passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+	let iconName: String = StyleKit.image.logo.login
+	let checkboxButtonContent: LiveOptionalData<CheckboxButton.Content> = LiveOptionalData(data: nil)
+	let loginButtonContent: LiveOptionalData<PrimaryButton.Content> = LiveOptionalData(data: nil)
+	let emailTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
+	let passwordTextFieldContent: LiveOptionalData<UnderlinedTextField.Content> = LiveOptionalData(data: nil)
 
 	/// Action called after succesful login
 	var onDidLogin: (() -> Void)?
@@ -35,12 +30,11 @@ final class LoginVM: LoginVMType {
 
 	private var dataProvider: LoginDataProviderType
 
-	private var rememberCredentials: Bool = false
-
 	private var email: String?
 	private var password: String?
 
 	private var isPasswordHidden: Bool = true
+	private var rememberCredentials: Bool = false
 	private var isLoading: Bool = false {
 		didSet {
 			setupContent()
@@ -70,6 +64,7 @@ final class LoginVM: LoginVMType {
 			.done { data in
 				PersistentString(key: PersistentKey.accessToken, value: data.data.token).save()
 				self.rememberCredentials ? PersistentCodable(key: PersistentKey.userCredentials, value: credentials).save() : PersistentCodable<UserCredentials>(key: PersistentKey.userCredentials).remove()
+				self.isPasswordHidden = true
 				self.onDidLogin?()
 		}
 		.ensure {

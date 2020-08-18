@@ -16,9 +16,8 @@ final class LoginVC: UIViewController {
 
 	private var vm: LoginVMType
 
-	let stackView = UIStackView()
-
-	lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
+	private let stackView = UIStackView()
+	private lazy var imageView = UIImageView(image: StyleKit.image.make(from: vm.iconName))
 	private let emailTextField = UnderlinedTextField()
 	private let passwordTextField = UnderlinedTextField()
 	private let checkboxButton = CheckboxButton()
@@ -49,17 +48,12 @@ final class LoginVC: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		registerKeyboardNotifications()
+		addGestureRecognizer()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		emailTextField.becomeFirstResponder()
-	}
-
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		unregisterKeyboardNotifications()
 	}
 }
 
@@ -104,6 +98,10 @@ private extension LoginVC {
 			}
 		}
 		vm.loginButtonContent.dispatch()
+	}
+
+	func addGestureRecognizer() {
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
 	}
 
 	func setupUI() {
@@ -169,5 +167,9 @@ private extension LoginVC {
 			make.width.equalToSuperview()
 			make.height.equalTo(StyleKit.metrics.buttonHeight)
 		}
+	}
+
+	@objc func hideKeyboard() {
+		view.endEditing(true)
 	}
 }
