@@ -16,6 +16,7 @@ final class ShowDetailVC: UIViewController {
 
 	private let vm: ShowDetailVMType
 
+	private let scrollView = UIScrollView()
 	private let headerView = ShowDetailHeaderView()
 	private let titleLabel = UILabel()
 	private let descriptionLabel = UILabel()
@@ -101,7 +102,7 @@ private extension ShowDetailVC {
 	func setupHeader() {
 		headerView.snp.makeConstraints { make in
 			make.leading.trailing.top.equalToSuperview()
-			make.height.equalTo(250)
+			make.height.equalToSuperview().multipliedBy(0.25)
 		}
 	}
 
@@ -119,9 +120,11 @@ private extension ShowDetailVC {
 		descriptionLabel.font = StyleKit.font.callout
 		descriptionLabel.textColor = StyleKit.color.defaultText
 		descriptionLabel.numberOfLines = 0
+		descriptionLabel.adjustsFontSizeToFitWidth = true
 		descriptionLabel.snp.makeConstraints { make in
 			make.top.equalTo(titleLabel.snp.bottom).offset(StyleKit.metrics.padding.medium)
 			make.leading.trailing.equalToSuperview().inset(StyleKit.metrics.padding.large)
+			make.height.lessThanOrEqualToSuperview().multipliedBy(0.25)
 		}
 	}
 
