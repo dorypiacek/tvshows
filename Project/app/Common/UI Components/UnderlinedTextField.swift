@@ -17,6 +17,7 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
 
     private let separator = UIView()
 	private var rightViewButton: UIButton?
+	private var errorLabel: UILabel?
 
 	// MARK: - Initializers
 
@@ -50,7 +51,7 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
         replaceAction(for: .editingChanged) { [weak self] in
             content.textDidChange?(self?.text ?? "")
         }
-
+		separator.backgroundColor = content.hasError ? StyleKit.color.brand : StyleKit.color.separator
 		updateRightView(with: content.rightView)
     }
 }
@@ -72,15 +73,17 @@ extension UnderlinedTextField {
 		let keyboardType: UIKeyboardType
 		let returnKeyType: UIReturnKeyType
 		let isSecured: Bool
+		let hasError: Bool
 		let rightView: RightViewContent?
 
-		init(text: String?, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, rightView: RightViewContent? = nil) {
+		init(text: String?, placeholder: String?, textDidChange: ((String) -> Void)?, keyboardType: UIKeyboardType, returnKeyType: UIReturnKeyType, isSecured: Bool = false, hasError: Bool = false, rightView: RightViewContent? = nil) {
 			self.text = text
 			self.placeholder = placeholder
 			self.textDidChange = textDidChange
 			self.keyboardType = keyboardType
 			self.returnKeyType = returnKeyType
 			self.isSecured = isSecured
+			self.hasError = hasError
 			self.rightView = rightView
 		}
 	}

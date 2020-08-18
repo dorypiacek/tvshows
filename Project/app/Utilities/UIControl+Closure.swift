@@ -9,37 +9,10 @@
 import Foundation
 import UIKit
 
+/// Credit for this super-helpful piece of code goes to my ex-colleague and mentor Jan "Číslo" Čislinský (https://github.com/jcislinsky ). 
+
 private var closures: Set<ActionSleeve> = []
 private var counter = 0
-
-private class ActionSleeve: Hashable {
-    let ownerId: Int
-    let event: UIControl.Event
-    let uniq: Int
-    let closure: () -> Void
-
-    init(_ ownerId: Int, _ event: UIControl.Event, _ uniq: Int, _ closure: @escaping () -> Void) {
-        self.ownerId = ownerId
-        self.event = event
-        self.uniq = uniq
-        self.closure = closure
-    }
-
-    @objc func invoke () {
-        closure()
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(ownerId.hashValue)
-        hasher.combine(event.rawValue.hashValue)
-        hasher.combine(uniq.hashValue)
-    }
-}
-
-// swiftlint:disable:next operator_whitespace
-private func ==(lhs: ActionSleeve, rhs: ActionSleeve) -> Bool {
-    lhs.hashValue == rhs.hashValue
-}
 
 public extension UIControl {
     /// Ads given closure as a target for a given event.
@@ -85,4 +58,33 @@ public extension UIControl {
             !($0.ownerId == ObjectIdentifier(self).hashValue && $0.event == controlEvent)
         })
     }
+}
+
+private class ActionSleeve: Hashable {
+    let ownerId: Int
+    let event: UIControl.Event
+    let uniq: Int
+    let closure: () -> Void
+
+    init(_ ownerId: Int, _ event: UIControl.Event, _ uniq: Int, _ closure: @escaping () -> Void) {
+        self.ownerId = ownerId
+        self.event = event
+        self.uniq = uniq
+        self.closure = closure
+    }
+
+    @objc func invoke () {
+        closure()
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ownerId.hashValue)
+        hasher.combine(event.rawValue.hashValue)
+        hasher.combine(uniq.hashValue)
+    }
+}
+
+// swiftlint:disable:next operator_whitespace
+private func ==(lhs: ActionSleeve, rhs: ActionSleeve) -> Bool {
+    lhs.hashValue == rhs.hashValue
 }
