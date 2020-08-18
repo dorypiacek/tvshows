@@ -56,13 +56,12 @@ final class ShowDetailVM: ShowDetailVMType {
 			.showDetail(with: showPreview.id)
 			.done { show in
 				self.showDetail = show.data
-				self.isShowLoading = false
 			}
 			.ensure {
+				self.isShowLoading = false
 				self.loadEpisodes()
 			}
 			.catch { error in
-				self.isShowLoading = false
 				print(error.localizedDescription)
 			}
 	}
@@ -98,7 +97,12 @@ private extension ShowDetailVM {
 	}
 
 	func setupHeaderContent() {
-		let url = try? Endpoint.image(showDetail?.imageUrl ?? "").url.asURL()
+		var url: URL? {
+			if let path = showDetail?.imageUrl {
+				return try? Endpoint.image(path).url.asURL()
+			}
+			return nil
+		}
 		headerContent.data = ShowDetailHeaderView.Content(
 			imageUrl: url,
 			isLoading: isShowLoading,

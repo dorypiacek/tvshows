@@ -47,8 +47,7 @@ final class ShowDetailHeaderView: UIView {
 			options: [KingfisherOptionsInfoItem.transition(.fade(0.5))],
 			completionHandler: { [weak imageView] result in
 				switch result {
-				case .success(let result):
-					imageView?.image = result.image
+				case .success:
 					imageView?.contentMode = .scaleAspectFill
 				case .failure:
 					imageView?.contentMode = .center
