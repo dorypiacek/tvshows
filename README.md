@@ -61,8 +61,3 @@ Library for observing values and events.
 ### ETPersistentValue
 
 Easy and convenient UserDefaults usage.
-
-## Notes
-
-- Despite recommendation, I decided not to use CodableAlamofire for response deserialization, because I found a lightweight solution that doesn't require another dependency.
-- I had testability in mind while developing, but unfortunately didn't have enough time to write tests 🙁
