@@ -1,7 +1,12 @@
 # TV Shows
 
 A simple application that allows user to log in, see list of TV shows and a TV show detail with a list of episodes. 
-​
+
+## Test user
+
+* email: ios.team@infinum.hr
+* password: infinum1
+
 ## Architecture
 ​
 I decided to use MVVM+C pattern to separate business and navigation logic from view layer. 
