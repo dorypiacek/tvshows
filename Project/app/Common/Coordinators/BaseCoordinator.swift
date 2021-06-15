@@ -35,6 +35,6 @@ class BaseCoordinator: CoordinatorType {
 				handler: action.handler
 			))
 		}
-		presenter.presentedViewController?.present(alert, animated: true, completion: nil)
+		presenter.viewControllers.last?.present(alert, animated: true, completion: nil)
 	}
 }

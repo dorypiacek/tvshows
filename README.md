@@ -46,6 +46,7 @@ Well-known networking library.
 ### SwiftLint
 
 Great tool for checking code style and conventions.
+
 ### PromiseKit
 
 Promises are an ellegant way to handle asynchronous programming, mostly when dealing with API calls. 

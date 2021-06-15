@@ -44,7 +44,6 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
 
     func update(with content: Content) {
         text = content.text
-        placeholder = content.placeholder
         keyboardType = content.keyboardType
 		returnKeyType = content.returnKeyType
 		isSecureTextEntry = content.isSecured
@@ -52,7 +51,10 @@ final class UnderlinedTextField: JVFloatLabeledTextField {
 			content.textDidChange?(self?.text)
         }
 		separator.backgroundColor = content.hasError ? StyleKit.color.brand : StyleKit.color.separator
-		attributedPlaceholder = NSAttributedString(string: "", attributes: [.foregroundColor: content.hasError ? StyleKit.color.brand : StyleKit.color.lightGrayText])
+
+		if let placeholder = content.placeholder {
+			attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: content.hasError ? StyleKit.color.brand : StyleKit.color.lightGrayText])
+		}
 		updateRightView(with: content.rightView)
     }
 }
